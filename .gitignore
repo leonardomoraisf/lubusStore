@@ -1,0 +1,5 @@
+# Ignore arquivos relacionados às chaves de constantes
+.env
+
+# Ignore o lock do composer
+composer.lock
