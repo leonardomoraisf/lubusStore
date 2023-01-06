@@ -1,0 +1,10 @@
+.imagem-categorie{
+    height: 2.5rem;
+    object-fit: cover;
+}
+
+.edit-image{
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+}

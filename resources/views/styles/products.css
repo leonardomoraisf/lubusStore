@@ -1,0 +1,31 @@
+.card .imagem-produto{
+    height: 2.5rem;
+    object-fit: cover;
+}
+
+.categorie-card img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+
+.card-link{
+    color: black;
+}
+.card-link:hover{
+    color: black;
+}
+
+.categorie-card{
+    background-color: transparent;
+    margin-top: 10px;
+    width: 5rem;
+    text-align: center;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+
+.categorie-card .card-body{
+    padding: 0;
+    text-align: center;
+}

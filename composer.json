@@ -1,0 +1,14 @@
+{
+    "name":"ls/dashboard",
+    "autoload": {
+        "psr-4": {
+            "App\\":"app/"
+        },
+        "files": [
+            "config.php"
+        ]
+    },
+    "require": {
+        "william-costa/dot-env": "^0.1.0"
+    }
+}
