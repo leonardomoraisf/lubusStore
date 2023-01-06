@@ -4,6 +4,12 @@ require('vendor/autoload.php');
 
 use \App\Http\Router;
 use \App\Utils\View;
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$url = $_ENV['URL'];
+
+define('URL',$url);
 
 // DEFINE PADRON VALUE OF VARS 
 View::init([
