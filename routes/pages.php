@@ -5,8 +5,8 @@ use \App\Controllers\Pages;
 
 // Home ROUTE
 $router->get('/',[
-    function(){
-        return new Response(200,Pages\Home::getHome());
+    function($request){
+        return new Response(200,Pages\Home::getHome($request));
     }
 ]);
 
@@ -24,8 +24,8 @@ $router->get('/categories/edit/{categorie_id}',[
 
 // Foms Categorie ROUTE
 $router->get('/forms/categorie',[
-    function(){
-        return new Response(200,Pages\Categories::getFormCategorie());
+    function($request){
+        return new Response(200,Pages\Categories::getFormCategorie($request));
     }
 ]);
 $router->post('/forms/categorie',[

@@ -6,28 +6,69 @@ use App\Utils\View;
 
 class Page
 {
+
     /**
-     * Método que retorna a view
+     * Método que retorna o header
      * @return string
      */
-    public static function getPage($links,$script_links,$preloader,$header,$sidebar,$footer,$content,$page)
-    {
-        $links = View::render('views/includes/'.$links);
-        $script_links = View::render('views/includes/'.$script_links);
-        $header = View::render('views/includes/'.$header);
-        $preloader = View::render('views/includes/'.$preloader);
-        $sidebar = View::render('views/includes/'.$sidebar);
-        $footer = View::render('views/includes/'.$footer);
-        $footer = View::render('views/includes/'.$footer);
-        return View::render('views/pages/page', [
-            'links' => $links,
-            'script_links' => $script_links,
-            'preloader' => $preloader,
-            'sidebar' => $sidebar,
-            'footer' => $footer,
-            'header' => $header,
-            'content' => $content,
-            'page' => $page
+    public static function getHeader(){
+        return View::render('views/includes/header', [
         ]);
     }
+
+    /**
+     * Método que retorna a sidebar
+     * @return string
+     */
+    public static function getSidebar(){
+        return View::render('views/includes/sidebar', [
+        ]);
+    }
+
+     /**
+     * Método que retorna o footer
+     * @return string
+     */
+    public static function getFooter(){
+        return View::render('views/includes/footer', [
+        ]);
+    }
+
+     /**
+     * Método que retorna os links
+     * @return string
+     */
+    public static function getLinks(){
+        return View::render('views/includes/links', [
+        ]);
+    }
+
+    /**
+     * Método que retorna o preloader
+     * @return string
+     */
+    public static function getPreLoader(){
+        return View::render('views/includes/preloader', [
+        ]);
+    }
+
+     /**
+     * Método que retorna os links de script
+     * @return string
+     */
+    public static function getScriptLinks(){
+        return View::render('views/includes/scriptlinks', [
+        ]);
+    }
+
+    public static function getFullPage($page = []){
+        $page['footer'] = self::getFooter();
+        $page['header'] = self::getHeader();
+        $page['links'] = self::getLinks();
+        $page['scriptlinks'] = self::getScriptLinks();
+        $page['sidebar'] = self::getSidebar();
+        $page['preloader'] = self::getPreLoader();
+        return $page;
+    }
+
 }

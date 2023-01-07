@@ -42,21 +42,41 @@ class Categories extends Page
      */
     public static function getCategories($request)
     {
-        $content = View::render('views/pages/categories', [
+        $fullPage = parent::getFullPage();
+        return View::render('views/pages/categories', [
+            'preloader' => $fullPage['preloader'],
+            'links' => $fullPage['links'],
+            'sidebar' => $fullPage['sidebar'],
+            'header' => $fullPage['header'],
+            'footer' => $fullPage['footer'],
+            'scriptlinks' => $fullPage['scriptlinks'],
+            'title' => 'Categories',
             'itens' => self::getCategorieItems($request),
+            'active_categories' => 'active',
         ]);
-        return parent::getPage('links','script_links','preloader','header','sidebar','footer',$content,'categories');
+
     }
 
     /**
      * Método que retorna a view
      * @return string
      */
-    public static function getFormCategorie()
+    public static function getFormCategorie($request)
     {
-        $content = View::render('views/pages/forms_categorie', [
+        $fullPage = parent::getFullPage();
+        return View::render('views/pages/forms_categorie', [
+            'preloader' => $fullPage['preloader'],
+            'links' => $fullPage['links'],
+            'sidebar' => $fullPage['sidebar'],
+            'header' => $fullPage['header'],
+            'footer' => $fullPage['footer'],
+            'scriptlinks' => $fullPage['scriptlinks'],
+            'title' => 'New Categorie',
+            'menu_open_forms' => 'menu-open',
+            'active_forms' => 'active',
+            'active_forms_categorie' => 'active',
+
         ]);
-        return parent::getPage('links','script_links','preloader','header','sidebar','footer',$content,'forms/categorie');
     }
 
     /**
@@ -70,7 +90,7 @@ class Categories extends Page
 
         $obCategorie->register($request);
 
-        return self::getFormCategorie();
+        return self::getFormCategorie($request);
         
     }
 
@@ -86,15 +106,22 @@ class Categories extends Page
         }else{
             $results = Utilities::getRow('`tb_categories`','id ='.$categorie_id,null);
             if($results->rowCount() == 1){
+                $fullPage = parent::getFullPage();
                 $obCategorie = $results->fetchObject(EntityCategorie::class);
-                $content = View::render('views/pages/edit_categorie', [
+                return View::render('views/pages/edit_categorie', [
+                    'preloader' => $fullPage['preloader'],
+                    'links' => $fullPage['links'],
+                    'sidebar' => $fullPage['sidebar'],
+                    'header' => $fullPage['header'],
+                    'footer' => $fullPage['footer'],
+                    'scriptlinks' => $fullPage['scriptlinks'],
                     'id' => $obCategorie->id,
                     'name' => $obCategorie->name,
                     'description' => $obCategorie->description,
                     'date' => date('d/m/Y',strtotime($obCategorie->date)),
                     'img' => UPLOADS.'/categories/'.$obCategorie->img,
+                    'active_categories' => 'active',
                 ]);
-                return parent::getPage('links','script_links','preloader','header','sidebar','footer',$content,'categories/edit');
             }else{
                 // REDIRECT TO CATEGORIES PAGE
                 $request->getRouter()->redirect('/categories');

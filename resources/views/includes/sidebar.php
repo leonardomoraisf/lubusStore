@@ -1,4 +1,3 @@
-<?php $page = '{{page}}';?>
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -36,8 +35,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item <?php if($page == 'forms_account' || $page == 'forms_categorie' || $page == 'forms_product'){echo 'menu-open ';};?>">
-            <a href="#" class="nav-link <?php if($page == 'forms_account' || $page == 'forms_categorie' || $page == 'forms_product'){echo 'active ';};?>">
+          <li class="nav-item {{menu_open_forms}}">
+            <a href="#" class="nav-link {{active_forms}}">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Forms
@@ -46,32 +45,32 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link <?php if($page == 'forms_account'){echo 'active';};?>">
+                <a href="" class="nav-link {{active_forms_account}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Account</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL}}/forms/categorie" class="nav-link <?php if($page == 'forms_categorie'){echo 'active';};?>">
+                <a href="{{URL}}/forms/categorie" class="nav-link {{active_forms_categorie}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Categorie</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link <?php if($page == 'forms_product'){echo 'active';};?>">
+                <a href="" class="nav-link {{active_forms_product}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Product</p>
                 </a>
               </li>
             </ul>
             <li class="nav-item">
-                <a href="{{URL}}/categories" class="nav-link <?php if($page == 'categories' || $page == 'edit_categorie'){echo 'active';};?>">
+                <a href="{{URL}}/categories" class="nav-link {{active_categories}}">
                 <i class="nav-icon fa fa-images"></i>
                   <p>Categories</p>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link <?php if($page == 'products' || $page == 'edit_product'){echo 'active';};?>">
+                <a href="" class="nav-link {{active_products}}">
                 <i class="nav-icon fa fa-cart-shopping"></i>
                   <p>Products</p>
                 </a>
