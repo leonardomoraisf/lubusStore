@@ -37,7 +37,7 @@ class Router
      */
     public  function __construct($url)
     {
-        $this->request = new Request();
+        $this->request = new Request($this);
         $this->url = $url;
         $this->setPrefix();
     }
@@ -205,5 +205,26 @@ class Router
         } catch (Exception $e) {
             return new Response($e->getCode(),$e->getMessage());
         }
+    }
+
+    /**
+     * Method to return a URL atual
+     * @return string
+     */
+    public function getCurrentUrl(){
+        return $this->url.$this->getUri();
+    }
+
+    /**
+     * Method to redirect the URL
+     * @param string $route
+     */
+    public function redirect($route){
+        //URL
+        $url = $this->url.$route;
+
+        //EXECUTE REDIRECT
+        header('location: '.$url);
+        exit;
     }
 }

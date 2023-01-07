@@ -2,8 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3><?php $countTodayVisits = \App\Models\UsersModel::countTodayVisits();
-                echo $countTodayVisits; ?></h3>
+            <h3>5</h3>
 
             <p>Unique Visitors Today</p>
         </div>

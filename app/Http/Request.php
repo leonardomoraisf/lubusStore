@@ -5,6 +5,12 @@ namespace App\Http;
 class Request
 {
     /**
+     * Router instance
+     * @var Router
+     */
+    private $router;
+
+    /**
      * Http method
      * @var string
      */
@@ -28,6 +34,11 @@ class Request
     private $postVars = [];
 
     /**
+     * Files of $_POST
+     */
+    private $postFiles = [];
+
+    /**
      * Header
      * @var array
      */
@@ -36,13 +47,35 @@ class Request
     /**
      * Constructor
      */
-    public function __construct()
+    public function __construct($router)
     {
+        $this->router = $router;
         $this->queryParams = $_GET ?? [];
         $this->postVars = $_POST ?? [];
+        $this->postFiles = $_FILES ?? [];
         $this->headers = getallheaders();
         $this->httpMethod = $_SERVER['REQUEST_METHOD'] ?? '';
+        $this->setUri();
+    }
+
+    /**
+     * Method to define uri
+     */
+    private function setUri(){
+        // COMPLETE URI WITH GETS
         $this->uri = $_SERVER['REQUEST_URI'] ?? '';
+
+        // REMOVE GETS
+        $xUri = explode('?',$this->uri);
+        $this->uri = $xUri[0];
+    }
+
+    /**
+     * Method to return an router instance
+     * @return Return
+     */
+    public function getRouter(){
+        return $this->router;
     }
     
     /**
@@ -83,5 +116,13 @@ class Request
      */
     public function getPostVars(){
         return $this->postVars;
+    }
+
+        /**
+     * Method to return the post files
+     * @return array
+     */
+    public function getPostFiles(){
+        return $this->postFiles;
     }
 }

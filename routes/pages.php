@@ -3,23 +3,35 @@
 use \App\Http\Response;
 use \App\Controllers\Pages;
 
-// HOME ROUTE
+// Home ROUTE
 $router->get('/',[
     function(){
         return new Response(200,Pages\Home::getHome());
     }
 ]);
 
-
+// Categories
 $router->get('/categories',[
-    function(){
-        return new Response(200,Pages\Home::getHome());
+    function($request){
+        return new Response(200,Pages\Categories::getCategories($request));
+    }
+]);
+$router->get('/categories/edit/{categorie_id}',[
+    function($request,$categorie_id){
+        return new Response(200,Pages\Categories::getEditCategorie($request,$categorie_id));
     }
 ]);
 
-$router->get('/categories/{id_categorie}/{acao}',[
-    function($id_categorie,$acao){
-        return new Response(200,'Categorie '.$id_categorie.' - '.$acao);
+// Foms Categorie ROUTE
+$router->get('/forms/categorie',[
+    function(){
+        return new Response(200,Pages\Categories::getFormCategorie());
     }
 ]);
+$router->post('/forms/categorie',[
+    function($request){
+        return new Response(200,Pages\Categories::insertCategorie($request));
+    }
+]);
+
 

@@ -10,22 +10,24 @@ class Page
      * Método que retorna a view
      * @return string
      */
-    public static function getPage($links,$script_links,$preloader,$header,$sidebar,$footer,$content)
+    public static function getPage($links,$script_links,$preloader,$header,$sidebar,$footer,$content,$page)
     {
-        $links = View::render('includes/'.$links);
-        $script_links = View::render('includes/'.$script_links);
-        $preloader = View::render('includes/'.$preloader);
-        $sidebar = View::render('includes/'.$sidebar);
-        $footer = View::render('includes/'.$footer);
-        $header = View::render('includes/'.$footer);
-        return View::render('pages/page', [
+        $links = View::render('views/includes/'.$links);
+        $script_links = View::render('views/includes/'.$script_links);
+        $header = View::render('views/includes/'.$header);
+        $preloader = View::render('views/includes/'.$preloader);
+        $sidebar = View::render('views/includes/'.$sidebar);
+        $footer = View::render('views/includes/'.$footer);
+        $footer = View::render('views/includes/'.$footer);
+        return View::render('views/pages/page', [
             'links' => $links,
             'script_links' => $script_links,
             'preloader' => $preloader,
             'sidebar' => $sidebar,
             'footer' => $footer,
             'header' => $header,
-            'content' => $content
+            'content' => $content,
+            'page' => $page
         ]);
     }
 }

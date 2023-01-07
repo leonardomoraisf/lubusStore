@@ -2,8 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
-            <h3><?php $countUsers = \App\Models\UsersModel::countUsers();
-                echo $countUsers; ?></h3>
+            <h3>7</h3>
 
             <p>User Registrations</p>
         </div>
