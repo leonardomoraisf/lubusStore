@@ -6,6 +6,11 @@ use WilliamCosta\DatabaseManager\Database;
 
 class Utilities{
 
+    /**
+     * Method to validate string data
+     * @param string $data
+     * @return String
+     */
     public static function validateData($data)
     {
         $data = trim($data);
@@ -14,6 +19,11 @@ class Utilities{
         return $data;
     }
     
+    /**
+     * Method valid images
+     * @param string $image
+     * @return Boolean
+     */
     public static function validateImage($image){
         $allowTypes = array('jpg','png','jpeg');
         $imageSize = $image['size'];
@@ -36,6 +46,12 @@ class Utilities{
         }
     }
 
+    /**
+     * Method to upload file
+     * @param string $file
+     * @param string $dir
+     * @return String
+     */
     public static function uploadFile($file,$dir){
         $fileName = $file['name'];
         $fileTmpName = $file['tmp_name'];
@@ -51,19 +67,19 @@ class Utilities{
         }
     }
 
+    /**
+     * Method to delete file
+     * @param string $file
+     * @param string $dir
+     */
     public static function deleteFile($file,$dir){
         $targetPcDir = 'D:\xampp\htdocs';
         $targetDir = $targetPcDir.'\lubus/uploads/'.$dir;
         @unlink($targetDir.$file);
     }
 
-    public static function redirect($url){
-        echo '<script>window.location.href="'.$url.'"</script>';
-        die();
-    }
-
     /**
-     * Method to return lists of data
+     * Method to return a list of datas
      * @param string $table
      * @param string $order
      * @param string $limit
@@ -74,6 +90,14 @@ class Utilities{
         return(new Database($table))->select($where,$order,$limit,$fields);
     }
 
+    /**
+     * Method to return a row of data
+     * @param string $table
+     * @param string $order
+     * @param string $limit
+     * @param string $fields
+     * @return PDOStatement
+     */
     public static function getRow($table = '',$where = null, $order = null, $limit = null, $fields = '*'){
         return(new Database($table))->select($where,$order,$limit,$fields);
     }

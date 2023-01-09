@@ -4,32 +4,44 @@ require('vendor/autoload.php');
 
 use \App\Utils\View;
 use \WilliamCosta\DatabaseManager\Database;
+use \App\Http\Middleware\Queue as MiddlewareQueue;
 
 // LOAD AMBIENT VARS
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../');
 $dotenv->load();
 
-$url = $_ENV['URL'];
-$uploads = $_ENV['UPLOADS'];
-$DB_DRIVE = $_ENV['DB_DRIVE'];
-$DB_HOST = $_ENV['DB_HOST'];
-$DB_USER = $_ENV['DB_USER'];
-$DB_PASS = $_ENV['DB_PASS'];
-$DB_NAME = $_ENV['DB_NAME'];
+// DEFAULT URL
+define('URL',$_ENV['URL']);
 
-define('URL',$url);
-define('UPLOADS',$uploads);
-define('DB_DRIVE',$DB_DRIVE);
-define('DB_HOST',$DB_HOST);
-define('DB_USER',$DB_USER);
-define('DB_PASS',$DB_PASS);
-define('DB_NAME',$DB_NAME);
+// DEFAULT UPLOAD ROUTE
+define('UPLOADS',$_ENV['UPLOADS']);
 
-// DEFINE O BANCO
+// DB INFOS
+define('DB_DRIVE',$_ENV['DB_DRIVE']);
+define('DB_HOST',$_ENV['DB_HOST']);
+define('DB_USER',$_ENV['DB_USER']);
+define('DB_PASS',$_ENV['DB_PASS']);
+define('DB_NAME',$_ENV['DB_NAME']);
+
+// MAINTENANCE STATUS
+define('MAINTENANCE',$_ENV['MAINTENANCE']);
+
+// DEFINE THE DB INFOS
 Database::config(DB_HOST,DB_NAME,DB_USER,DB_PASS);
 
 
-// DEFINE PADRON VALUE OF VARS 
+// DEFINE DEFAULT VALUE OF VARS 
 View::init([
         'URL' => URL,
 ]);
+
+// DEFINE THE MIDDLEWARE MAP
+MiddlewareQueue::setMap([
+        'maintenance' => \App\Http\Middleware\Maintenance::class
+]);
+
+// DEFINE THE DEFAULT MIDDLEWARE MAP
+MiddlewareQueue::setDefault([
+        'maintenance'
+]);
+

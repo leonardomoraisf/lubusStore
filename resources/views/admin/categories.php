@@ -27,7 +27,7 @@
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="{{URL}}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{URL}}/dashboard">Home</a></li>
                                 <li class="breadcrumb-item active">{{title}}</li>
                             </ol>
                         </div><!-- /.col -->
@@ -38,28 +38,38 @@
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
-                    <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        {{box_new_orders}}
-                        {{box_today_unique_visitors}}
-                        {{box_unique_visitors}}
-                        {{box_user_regs}}
-                    </div>
-                    <!-- /.row -->
-                    <!-- Main row -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-lg-7 connectedSortable">
-                            <!-- Custom tabs (Charts with tabs)-->
 
-                        </section>
-                        <!-- right col -->
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-body p-0">
+                        <table class="table table-striped projects">
+                            <thead>
+                                <tr>
+                                    <th style="width: 1%">
+                                        #
+                                    </th>
+                                    <th style="width: 10%">
+                                        Categorie Name
+                                    </th>
+                                    <th style="width: 10%">
+                                        Image
+                                    </th>
+                                    <th style="width: 38%">
+                                        Description
+                                    </th>
+                                    <th style="width: 20%">
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{itens}}
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
             </section>
-
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

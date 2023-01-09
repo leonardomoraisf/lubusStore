@@ -5,6 +5,7 @@ namespace App\Http;
 use \Closure;
 use \Exception;
 use \ReflectionFunction;
+use \App\Http\Middleware\Queue as MiddlewareQueue;
 
 class Router
 {
@@ -70,10 +71,13 @@ class Router
             }
         }
 
+        // ROUTE MIDDLEWARES
+        $params['middlewares'] = $params['middlewares'] ?? [];
+
         // ROUTE VARS
         $params['variables'] = [];
 
-        // VALIDATE PADRONS OF ROUTE VARS
+        // VALIDATE STANDARDS OF ROUTE VARS
         $patternVariable = '/{(.*?)}/';
         if(preg_match_all($patternVariable,$route,$matches)){
             $route = preg_replace($patternVariable,'(.*?)',$route);
@@ -132,7 +136,7 @@ class Router
         // Request URI
         $uri = $this->request->getUri();
         
-        // Separe the uri with prefix
+        // Separate the uri with prefix
         $xUri = strlen($this->prefix) ? explode($this->prefix,$uri) : [$uri];
         
         // return the uri without prefix
@@ -199,8 +203,8 @@ class Router
                 $args[$name] = $route['variables'][$name] ?? '';
             }
 
-            // RETURN FUNC EXECUTION
-            return call_user_func_array($route['controller'],$args);
+            // RETURN QUEUE EXECUTION OF MIDDLEWARES
+            return (new MiddlewareQueue($route['middlewares'],$route['controller'],$args))->next($this->request);
 
         } catch (Exception $e) {
             return new Response($e->getCode(),$e->getMessage());
@@ -208,7 +212,7 @@ class Router
     }
 
     /**
-     * Method to return a URL atual
+     * Method to return the actual URL
      * @return string
      */
     public function getCurrentUrl(){

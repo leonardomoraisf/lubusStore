@@ -1,5 +1,5 @@
 {
-    "name":"ls/dashboard",
+    "name":"lubus/store",
     "autoload": {
         "psr-4": {
             "App\\":"app/"

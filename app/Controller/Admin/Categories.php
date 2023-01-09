@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Controllers\Pages;
+namespace App\Controller\Admin;
 
+use App\Http\Request;
 use App\Utils\View;
 use App\Models\Entity\Categorie as EntityCategorie;
 use App\Utils\Utilities;
-use WilliamCosta\DatabaseManager\Pagination;
 
 class Categories extends Page
 {
@@ -14,7 +14,7 @@ class Categories extends Page
      * @param Request $request
      * @return string
      */
-    private static function getCategorieItems($request){
+    private static function getCategorieItems(){
         // Categories
         $itens = '';
 
@@ -23,7 +23,7 @@ class Categories extends Page
 
         // RENDER ITEM
         while($obCategories = $results->fetchObject(EntityCategorie::class))
-        $itens .= View::render('views/pages/categorie/item', [
+        $itens .= View::render('views/admin/categorie/item', [
             'id' => $obCategories->id,
             'name' => $obCategories->name,
             'description' => $obCategories->description,
@@ -36,41 +36,41 @@ class Categories extends Page
     }
 
     /**
-     * Método que retorna a view
+     * Method to return view
      * @param Request $request
      * @return string
      */
-    public static function getCategories($request)
+    public static function getCategories()
     {
-        $fullPage = parent::getFullPage();
-        return View::render('views/pages/categories', [
-            'preloader' => $fullPage['preloader'],
-            'links' => $fullPage['links'],
-            'sidebar' => $fullPage['sidebar'],
-            'header' => $fullPage['header'],
-            'footer' => $fullPage['footer'],
-            'scriptlinks' => $fullPage['scriptlinks'],
+        $elements = parent::getElements();
+        return View::render('views/admin/categories', [
+            'preloader' => $elements['preloader'],
+            'links' => $elements['links'],
+            'sidebar' => $elements['sidebar'],
+            'header' => $elements['header'],
+            'footer' => $elements['footer'],
+            'scriptlinks' => $elements['scriptlinks'],
             'title' => 'Categories',
-            'itens' => self::getCategorieItems($request),
+            'itens' => self::getCategorieItems(),
             'active_categories' => 'active',
         ]);
 
     }
 
     /**
-     * Método que retorna a view
+     * Method to return form categorie view
      * @return string
      */
-    public static function getFormCategorie($request)
+    public static function getFormCategorie()
     {
-        $fullPage = parent::getFullPage();
-        return View::render('views/pages/forms_categorie', [
-            'preloader' => $fullPage['preloader'],
-            'links' => $fullPage['links'],
-            'sidebar' => $fullPage['sidebar'],
-            'header' => $fullPage['header'],
-            'footer' => $fullPage['footer'],
-            'scriptlinks' => $fullPage['scriptlinks'],
+        $elements = parent::getElements();
+        return View::render('views/admin/forms_categorie', [
+            'preloader' => $elements['preloader'],
+            'links' => $elements['links'],
+            'sidebar' => $elements['sidebar'],
+            'header' => $elements['header'],
+            'footer' => $elements['footer'],
+            'scriptlinks' => $elements['scriptlinks'],
             'title' => 'New Categorie',
             'menu_open_forms' => 'menu-open',
             'active_forms' => 'active',
@@ -90,31 +90,31 @@ class Categories extends Page
 
         $obCategorie->register($request);
 
-        return self::getFormCategorie($request);
+        return self::getFormCategorie();
         
     }
 
     /**
-     * Método que retorna a view
+     * Method to return view
      * @return string
      */
-    public static function getEditCategorie($request,$categorie_id)
+    public static function getEditCategorie($request,$cat_id)
     {
-        if($categorie_id == ''){
+        if($cat_id == ''){
             // REDIRECT TO CATEGORIES PAGE
-            $request->getRouter()->redirect('/categories');
+            $request->getRouter()->redirect('/dashboard/categories');
         }else{
-            $results = Utilities::getRow('`tb_categories`','id ='.$categorie_id,null);
+            $results = Utilities::getRow('`tb_categories`','id ='.$cat_id,null);
             if($results->rowCount() == 1){
-                $fullPage = parent::getFullPage();
+                $elements = parent::getElements();
                 $obCategorie = $results->fetchObject(EntityCategorie::class);
-                return View::render('views/pages/edit_categorie', [
-                    'preloader' => $fullPage['preloader'],
-                    'links' => $fullPage['links'],
-                    'sidebar' => $fullPage['sidebar'],
-                    'header' => $fullPage['header'],
-                    'footer' => $fullPage['footer'],
-                    'scriptlinks' => $fullPage['scriptlinks'],
+                return View::render('views/admin/edit_categorie', [
+                    'preloader' => $elements['preloader'],
+                    'links' => $elements['links'],
+                    'sidebar' => $elements['sidebar'],
+                    'header' => $elements['header'],
+                    'footer' => $elements['footer'],
+                    'scriptlinks' => $elements['scriptlinks'],
                     'id' => $obCategorie->id,
                     'name' => $obCategorie->name,
                     'description' => $obCategorie->description,
@@ -124,7 +124,7 @@ class Categories extends Page
                 ]);
             }else{
                 // REDIRECT TO CATEGORIES PAGE
-                $request->getRouter()->redirect('/categories');
+                $request->getRouter()->redirect('/dashboard/categories');
             }
         }
     }

@@ -44,7 +44,7 @@ class Categorie{
         // POST DATA
         $postVars = $request->getPostVars();
         $postFiles = $request->getPostFiles();
-        //DEFINE DATA
+        // DEFINE DATA
         $obUtilities = new Utilities;
         $this->name = $postVars['name'];
         $this->description = $postVars['description'];

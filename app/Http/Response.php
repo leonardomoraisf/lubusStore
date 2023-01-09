@@ -11,7 +11,7 @@ class Response
     private $httpCode = 200;
 
     /**
-     * Reponse header
+     * Response header
      * @var array
      */
     private $headers = [];
@@ -73,7 +73,7 @@ class Response
     }
 
     /**
-     * Method to send reponse to user
+     * Method to send response to user
      */
     public function sendResponse(){
         // SEND HEADERS

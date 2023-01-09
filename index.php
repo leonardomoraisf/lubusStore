@@ -9,8 +9,11 @@ use \App\Http\Router;
 // INIT ROUTER
 $router = new Router(URL);
 
-// INCLUDE ROUTES
-include('routes/pages.php');
+// INCLUDE PUBLIC ROUTES
+include('routes/public.php');
+
+// INCLUDE DASHBOARD ROUTES
+include('routes/admin.php');
 
 // PRINT RESPONSE OF ROUTE
 $router->run()

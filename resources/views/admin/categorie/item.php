@@ -24,7 +24,7 @@
         </a>
     </td>
     <td class="project-actions text-right">
-        <a class="btn btn-info btn-sm" href="{{URL}}/categories/edit/{{id}}">
+        <a class="btn btn-info btn-sm" href="{{URL}}/dashboard/categories/{{id}}/edit">
             <i class="fas fa-pencil-alt">
             </i>
             Edit

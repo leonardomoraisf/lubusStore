@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{URL}}" class="brand-link">
+    <a href="{{URL}}/dashboard" class="brand-link">
       <img src="{{URL}}/resources/assets/images/logo-lubus-wolf.png" alt="LubusStore Logo" class="brand-image " style="opacity: .8">
       <span class="brand-text font-weight-light">LS Dashboard</span>
     </a>
@@ -51,7 +51,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL}}/forms/categorie" class="nav-link {{active_forms_categorie}}">
+                <a href="{{URL}}/dashboard/forms/categorie" class="nav-link {{active_forms_categorie}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>New Categorie</p>
                 </a>
@@ -64,7 +64,7 @@
               </li>
             </ul>
             <li class="nav-item">
-                <a href="{{URL}}/categories" class="nav-link {{active_categories}}">
+                <a href="{{URL}}/dashboard/categories" class="nav-link {{active_categories}}">
                 <i class="nav-icon fa fa-images"></i>
                   <p>Categories</p>
                 </a>
