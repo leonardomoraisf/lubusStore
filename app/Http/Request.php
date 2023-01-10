@@ -72,7 +72,7 @@ class Request
 
     /**
      * Method to return an router instance
-     * @return Return
+     * @return Router
      */
     public function getRouter(){
         return $this->router;
@@ -107,6 +107,7 @@ class Request
      * @return array
      */
     public function getQueryParams(){
+        unset($this->queryParams['url']);
         return $this->queryParams;
     }
 

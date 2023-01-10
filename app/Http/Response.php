@@ -34,7 +34,7 @@ class Response
      * @param mixes
      * @param string
      */
-    public function __construct($httpCode,$content,$contentType = 'text/html')
+    public function __construct($httpCode, $content, $contentType = 'text/html')
     {
         $this->httpCode = $httpCode;
         $this->content = $content;
@@ -45,9 +45,10 @@ class Response
      * Method to change contentType of response
      * @param string $contentType
      */
-    public function setContentType($contentType){
+    public function setContentType($contentType)
+    {
         $this->contentType = $contentType;
-        $this->addHeader('Content-Type',$contentType);
+        $this->addHeader('Content-Type', $contentType);
     }
 
     /**
@@ -55,33 +56,41 @@ class Response
      * @param string $key
      * @param string $value
      */
-    public function addHeader($key,$value){
+    public function addHeader($key, $value)
+    {
         $this->headers[$key] = $value;
     }
 
     /**
      * Method to send the headers to navigator
      */
-    private function sendHeaders(){
+    private function sendHeaders()
+    {
         //STATUS
         http_response_code($this->httpCode);
 
         //SEND ALL HEADERS
         foreach ($this->headers as $key => $value) {
-            header($key.': '.$value);
+            header($key . ': ' . $value);
         }
     }
 
     /**
      * Method to send response to user
      */
-    public function sendResponse(){
+    public function sendResponse()
+    {
+
         // SEND HEADERS
         $this->sendHeaders();
+
         // PRINT CONTENT
         switch ($this->contentType) {
             case 'text/html':
                 echo $this->content;
+                exit;
+            case 'application/json':
+                echo json_encode($this->content, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                 exit;
         }
     }

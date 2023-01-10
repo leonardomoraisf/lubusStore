@@ -7,14 +7,14 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <div class="sidebar os-host os-theme-light os-host-overflow os-host-overflow-y os-host-resize-disabled os-host-scrollbar-horizontal-hidden os-host-transition">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="{{URL}}/resources/assets/images/blank-user.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="{{user_img}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">{{user_name}}</a>
         </div>
       </div>
 
@@ -51,9 +51,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{URL}}/dashboard/forms/categorie" class="nav-link {{active_forms_categorie}}">
+                <a href="{{URL}}/dashboard/forms/category" class="nav-link {{active_forms_category}}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>New Categorie</p>
+                  <p>New Category</p>
                 </a>
               </li>
               <li class="nav-item">

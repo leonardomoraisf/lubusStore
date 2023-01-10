@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Controller\Api;
+
+use App\Model\Entity\Category as EntityCategory;
+use \WilliamCosta\DatabaseManager\Pagination;
+use App\Utils\Utilities;
+use \Exception;
+
+class Category extends Api
+{
+
+    /**
+     * Method to catch items render
+     * @param Request $request
+     * @param Pagination $obPagination
+     * @return string
+     */
+    private static function getCategoryItems($request, &$obPagination)
+    {
+        // Categories
+        $itens = [];
+
+        // TOTAL REG QUANTITY
+        $totalQuantity = Utilities::getList('`tb_categories`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+
+        // ACTUAL PAGE
+        $queryParams = $request->getQueryParams();
+        $actualPage = $queryParams['page'] ?? 1;
+
+        // PAGINATION INSTANCE
+        $obPagination = new Pagination($totalQuantity, $actualPage, 5);
+
+        // RESULTS
+        $results = Utilities::getList('`tb_categories`', null, 'id DESC', $obPagination->getLimit());
+
+        // RENDER ITEM
+        while ($obCategories = $results->fetchObject(EntityCategory::class))
+            $itens[] = [
+                'id' => (int)$obCategories->id,
+                'name' => $obCategories->name,
+                'description' => $obCategories->description,
+                'date' => $obCategories->date,
+                'img' => $obCategories->img,
+            ];
+
+        return $itens;
+    }
+
+    /**
+     * Method to return registered Categories 
+     * @param Request $request
+     * @return array
+     */
+    public static function getCategories($request)
+    {
+        return [
+            'categories' => self::getCategoryItems($request, $obPagination),
+            'pagination' => parent::getPagination($request, $obPagination),
+        ];
+    }
+
+    /**
+     * Method to return one category details
+     * @param Request $request
+     * @param integer $id
+     * @return array
+     */
+    public static function getCategory($request, $id)
+    {
+        // VERIFY CATEGORY ID
+        if(!is_numeric($id)){
+            throw new Exception("The id '".$id."' is not valid.", 400);
+        }
+
+        // SEARCH CATEGORY
+        $obCategory = EntityCategory::getCategoryById($id);
+    
+        // VERIFY IS EXISTS
+        if(!$obCategory instanceof EntityCategory){
+            throw new Exception("Category ".$id." not found.", 404);
+        }
+
+        // RETURN CATEGORY DETAILS
+        return [
+            'id' => (int)$obCategory->id,
+            'name' => $obCategory->name,
+            'description' => $obCategory->description,
+            'date' => $obCategory->date,
+            'img' => $obCategory->img,
+        ];
+    }
+}

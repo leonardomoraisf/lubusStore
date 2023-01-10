@@ -15,6 +15,9 @@ include('routes/public.php');
 // INCLUDE DASHBOARD ROUTES
 include('routes/admin.php');
 
+// INCLUDE API ROUTES
+include('routes/api.php');
+
 // PRINT RESPONSE OF ROUTE
 $router->run()
         ->sendResponse();

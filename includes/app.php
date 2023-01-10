@@ -37,7 +37,10 @@ View::init([
 
 // DEFINE THE MIDDLEWARE MAP
 MiddlewareQueue::setMap([
-        'maintenance' => \App\Http\Middleware\Maintenance::class
+        'maintenance' => \App\Http\Middleware\Maintenance::class,
+        'required-admin-login' => \App\Http\Middleware\RequiredAdminLogin::class,
+        'required-admin-logout' => \App\Http\Middleware\RequiredAdminLogout::class,
+        'api' => \App\Http\Middleware\Api::class,
 ]);
 
 // DEFINE THE DEFAULT MIDDLEWARE MAP

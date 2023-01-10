@@ -2,7 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
-            <h3>7</h3>
+            <h3>{{users_regs}}</h3>
 
             <p>User Registrations</p>
         </div>

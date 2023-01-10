@@ -56,7 +56,7 @@ class Utilities{
         $fileName = $file['name'];
         $fileTmpName = $file['tmp_name'];
         $targetPcDir = 'D:\xampp\htdocs';
-        $targetDir = $targetPcDir.'\lubus/uploads/'.$dir;
+        $targetDir = $targetPcDir.'\lubusStore-uploads/'.$dir;
         $fileExt = explode('.',$fileName);
         $fileExt = $fileExt[count($fileExt) - 1];
         $uniqName = uniqid().'.'.$fileExt;
@@ -74,7 +74,7 @@ class Utilities{
      */
     public static function deleteFile($file,$dir){
         $targetPcDir = 'D:\xampp\htdocs';
-        $targetDir = $targetPcDir.'\lubus/uploads/'.$dir;
+        $targetDir = $targetPcDir.'\lubusStore-uploads/'.$dir;
         @unlink($targetDir.$file);
     }
 
@@ -101,4 +101,5 @@ class Utilities{
     public static function getRow($table = '',$where = null, $order = null, $limit = null, $fields = '*'){
         return(new Database($table))->select($where,$order,$limit,$fields);
     }
+    
 }

@@ -2,7 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-danger">
         <div class="inner">
-            <h3>3</h3>
+            <h3>{{unique_visitors}}</h3>
 
             <p>Unique Visitors</p>
         </div>

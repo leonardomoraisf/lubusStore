@@ -2,7 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
-            <h3>5</h3>
+            <h3>{{unique_visitors_today}}</h3>
 
             <p>Unique Visitors Today</p>
         </div>

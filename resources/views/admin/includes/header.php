@@ -1,5 +1,5 @@
   <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+  <nav class="main-header navbar navbar-expand navbar-dark ">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -35,7 +35,7 @@
       </li>
       <!-- User Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="" aria-expanded="false">
+        <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="fa fa-user"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -43,7 +43,7 @@
             <i class="fas fa-user-edit mr-2"></i> Edit profile
           </a>
           <div class="dropdown-divider"></div>
-          <a href="?logout" class="dropdown-item">
+          <a href="{{URL}}/dashboard/logout" class="dropdown-item">
             <i class="fas fa-door-open mr-2"></i> Logout
           </a>
         </div>
