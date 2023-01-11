@@ -1,0 +1,50 @@
+.categorias {
+  margin-top: 90px;
+  background: linear-gradient(180deg, #f9f9f9 50%, var(--main-color) 50%);
+}
+
+.categorias h1 {
+  font-family: "PalanquinDark-Regular";
+  color: var(--text-color);
+}
+
+.categorias .box-cards {
+  background-color: white;
+  -webkit-box-shadow: 0px 30px 30px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 30px 30px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 30px 30px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.categorias .swiper{
+  padding: 0 10px;
+}
+
+.card-body img{
+  width: 120px;
+  height: 110px;
+  object-fit: cover;
+  border: 3px solid #e4e4e4;
+}
+
+.categorias h6 {
+  font-family: "PalanquinDark-Medium";
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.categorias .btn {
+  border-radius: 20px;
+  font-family: "PalanquinDark-Medium";
+  color: var(--main-color);
+  border-width: 3px;
+  border-color: var(--main-color);
+  background-color: #f3ebf5;
+}
+
+.categorias .swiper-pagination-bullet{
+  height: 7px;
+  width: 26px;
+  border-radius: 25px;
+  background: white;
+}

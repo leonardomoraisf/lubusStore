@@ -133,6 +133,7 @@ class Router
         return $this->addRoute('PUT',$route,$params);
     }
 
+
     /**
      * Method to define DELETE route
      * @param string $route

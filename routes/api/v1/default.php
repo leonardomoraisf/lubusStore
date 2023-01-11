@@ -6,7 +6,7 @@ use \App\Controller\Api;
 // API ROOT ROUTE
 $router->get('/api/v1',[
     'middlewares' => [
-        'api'
+        'api',
     ],
     function($request){
         return new Response(200,Api\Api::getDetails($request),'application/json');

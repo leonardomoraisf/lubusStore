@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -6,7 +7,7 @@
 	<title>Login on dashboard</title>
 	{{links}}
 	<link href="{{URL}}/resources/views/admin/styles/login.css" rel="stylesheet">
-    <link href="{{URL}}/resources/views/admin/styles/contents.css" rel="stylesheet">
+	<link href="{{URL}}/resources/views/admin/styles/contents.css" rel="stylesheet">
 </head>
 
 <body>
@@ -20,12 +21,14 @@
 				<div class="lubus-image">
 					<img src="{{URL}}/resources/assets/images/logo-lubus.png">
 				</div><!--lubus-image-->
-
 				<form class="login-form" method="POST" id="form" enctype="multipart/form-data">
 
 					<span class="login-form-title">Sing in</span>
 					<p class="login-form-intro">Enter your username and password.</p>
+					<div class="row">
 						{{status}}
+						{{status_middle}}
+					</div>
 					<div class="wrap-text-form">
 						<span class="txt1">USERNAME</span>
 					</div><!--wrap-text-form-->
@@ -46,25 +49,22 @@
 						<span class="focus-input"></span>
 					</div>
 					<!--wrap-input-->
-
 					<div class="btn-container-login">
 						<button class="btn-login" type="submit">Log in</button>
 					</div>
 
 				</form>
 				<!--login-form-->
-
 			</div>
 			<!--wrapper-->
 
 		</div>
 		<!--container-login-->
-
 	</div>
 	<!--limiter-->
 
-{{scriptlinks}}
-<script src="{{URL}}/resources/assets/admin/js/login.js"></script>
+	{{scriptlinks}}
+	<script src="{{URL}}/resources/assets/admin/js/login.js"></script>
 </body>
 
 </html>

@@ -69,7 +69,7 @@ class Category
         $this->name = $name;
         $this->description = $description;
         // UPDATE CATEGORY
-        return (new Database('tb_categories'))->update('id = ' . $this->id, [
+        return (new Database('`tb_categories`'))->update('id = ' . $this->id, [
             'name' => $this->name,
             'description' => $this->description,
             'img' => $upload,
@@ -86,7 +86,7 @@ class Category
         $this->description = $description;
 
         // UPDATE CATEGORY
-        return (new Database('tb_categories'))->update('id = ' . $this->id, [
+        return (new Database('`tb_categories`'))->update('id = ' . $this->id, [
             'name' => $this->name,
             'description' => $this->description,
         ]);
@@ -99,7 +99,7 @@ class Category
     {
         Utilities::deleteFile($this->img, 'categories/');
         // DELETE CATEGORY
-        return (new Database('tb_categories'))->delete('id = ' . $this->id);
+        return (new Database('`tb_categories`'))->delete('id = ' . $this->id);
     }
 
 
@@ -116,7 +116,7 @@ class Category
         $this->img = $img_name;
 
         // INSERT CATEGORY ON DB
-        $this->id = (new Database('tb_categories'))->insert([
+        $this->id = (new Database('`tb_categories`'))->insert([
             'name' => $this->name,
             'description' => $this->description,
             'date' => $this->date,

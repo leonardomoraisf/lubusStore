@@ -10,6 +10,22 @@ use \App\Session\Admin\Login as SessionAdminLogin;
 class Login extends Page
 {
 
+    public static function getStatus($request)
+    {
+        //QUERY PARAMS
+        $queryParams = $request->getQueryParams();
+
+        // STATUS
+        if (!isset($queryParams['status'])) return '';
+
+        // STATUS MESSAGES
+        switch ($queryParams['status']) {
+            case 'double':
+                return Alert::getError("There's someone on your account.");
+                break;
+        }
+    }
+
     /**
      * Method to return login view
      * @param Request
@@ -27,6 +43,7 @@ class Login extends Page
             'links' => $elements['links'],
             'scriptlinks' => $elements['scriptlinks'],
             'status' => $error,
+            'status_middle' => self::getStatus($request),
         ]);
     }
 

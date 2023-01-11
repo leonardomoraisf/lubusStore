@@ -2,19 +2,21 @@
 
 namespace App\Session\Admin;
 
+use \WilliamCosta\DatabaseManager\Database;
+
 class Login
 {
 
     /**
      * Method to initiate session
      */
-    private static function init(){
+    private static function init()
+    {
 
         // VERIFY SESSION
-        if(session_status() != PHP_SESSION_ACTIVE){
+        if (session_status() != PHP_SESSION_ACTIVE) {
             session_start();
         }
-
     }
 
     /**
@@ -22,7 +24,8 @@ class Login
      * @param User $obUser
      * @return boolean
      */
-    public static function login($obUser){
+    public static function login($obUser)
+    {
 
         // INIT SESSION
         self::init();
@@ -35,32 +38,43 @@ class Login
             'email' => $obUser->email,
             'position' => $obUser->position,
             'img' => $obUser->img,
+            'login_token' => uniqid(),
         ];
+
+        // DELETE PAST LOGIN TOKEN ON DB
+        (new Database('`tb_login.tokens`'))->delete('user_id = "' . $obUser->id . '"');
+
+        // INSERT LOGIN TOKEN ON DB
+        (new Database('`tb_login.tokens`'))->insert([
+            'id' => null,
+            'user_id' => $obUser->id,
+            'token' => $_SESSION['admin']['user']['login_token']
+        ]);
 
         // SUCCESS
         return true;
-
     }
 
     /**
      * Method to verify if the user is logged
      * @return boolean
      */
-    public static function isLogged(){
+    public static function isLogged()
+    {
 
         // INIT SESSION
         self::init();
 
         // RETURN VERIFICATON
         return isset($_SESSION['admin']['user']['id']);
-        
     }
 
     /**
      * Method to logout user
      * @return boolean
      */
-    public static function logout(){
+    public static function logout()
+    {
 
         // INIT SESSION
         self::init();
@@ -71,5 +85,4 @@ class Login
         // SUCCESS
         return true;
     }
-
 }

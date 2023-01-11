@@ -8,6 +8,7 @@ use \App\Controller\Admin;
 $router->get('/dashboard/categories',[
     'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function($request){
         return new Response(200,Admin\Categories::getCategories($request));
@@ -20,6 +21,7 @@ $router->get('/dashboard/categories',[
 $router->get('/dashboard/categories/{cat_id}/edit',[
     'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function($request,$cat_id){
         return new Response(200,Admin\Categories::getEditCategory($request,$cat_id));
@@ -30,6 +32,7 @@ $router->get('/dashboard/categories/{cat_id}/edit',[
 $router->post('/dashboard/categories/{cat_id}/edit',[
         'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function($request,$cat_id){
         return new Response(200,Admin\Categories::setEditCategory($request,$cat_id));
@@ -40,6 +43,7 @@ $router->post('/dashboard/categories/{cat_id}/edit',[
 $router->get('/dashboard/categories/{cat_id}/delete',[
     'middlewares' => [
     'required-admin-login',
+    'verify-admin-session',
 ],
 function($request,$cat_id){
     return new Response(200,Admin\Categories::getDeleteCategory($request,$cat_id));
@@ -50,6 +54,7 @@ function($request,$cat_id){
 $router->post('/dashboard/categories/{cat_id}/delete',[
     'middlewares' => [
     'required-admin-login',
+    'verify-admin-session',
 ],
 function($request,$cat_id){
     return new Response(200,Admin\Categories::setDeleteCategory($request,$cat_id));
@@ -57,13 +62,12 @@ function($request,$cat_id){
 ]);
 
 
-
-
 // Form categorie ROUTES
 // GET
 $router->get('/dashboard/forms/category',[
     'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function($request){
         return new Response(200,Admin\Categories::getFormCategory($request));
@@ -74,6 +78,7 @@ $router->get('/dashboard/forms/category',[
 $router->post('/dashboard/forms/category',[
     'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function($request){
         return new Response(200,Admin\Categories::setFormCategory($request));

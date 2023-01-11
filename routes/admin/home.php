@@ -8,6 +8,7 @@ use \App\Controller\Admin;
 $router->get('/dashboard',[
     'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function(){
         return new Response(200,Admin\Home::getHome());

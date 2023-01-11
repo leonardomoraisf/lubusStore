@@ -17,7 +17,7 @@ class Home extends Page
         $box_today_unique_visitors = View::render('views/admin/includes/home/box_today-unique-visitors');
         $box_unique_visitors = View::render('views/admin/includes/home/box_unique-visitors');
         $box_user_regs = View::render('views/admin/includes/home/box_user-registrations');
-        $unique_visitors_today = Utilities::getList('`tb_users.visits`','date = '.date('Y-m-d'), null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $unique_visitors_today = Utilities::getList('`tb_users.visits`','date = '.strtotime(date('Y-m-d')), null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
         $unique_visitors = Utilities::getList('`tb_users.visits`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
         $users_regs = Utilities::getList('`tb_users`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
         parent::getObUser($obUser);
@@ -32,6 +32,7 @@ class Home extends Page
             'title' => 'Dashboard',
             'user_name' => $obUser->name,
             'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
+            'user_position' => $obUser->catchPosition($obUser->position),
             'box_new_orders' => $box_new_orders,
             'box_today_unique_visitors' => $box_today_unique_visitors,
             'box_unique_visitors' => $box_unique_visitors,

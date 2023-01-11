@@ -27,6 +27,7 @@ $router->post('/dashboard/login',[
 $router->get('/dashboard/logout',[
     'middlewares' => [
         'required-admin-login',
+        'verify-admin-session',
     ],
     function($request){
         return new Response(200,Admin\Login::setLogout($request));

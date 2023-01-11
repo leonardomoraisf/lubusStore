@@ -1,5 +1,4 @@
 <?php
 
-use \App\Http\Response;
-use \App\Controller\Public;
-
+// Home page include ROUTES
+include __DIR__.'/public/home.php';

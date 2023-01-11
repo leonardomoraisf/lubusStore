@@ -1,0 +1,82 @@
+@font-face {
+    font-family: "Amiri-Regular";
+    src: url(../../../assets/fonts/Amiri/Amiri-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Amiri-Italic";
+    src: url(../../../assets/fonts/Amiri/Amiri-Italic.ttf);
+}
+
+@font-face {
+    font-family: "Amiri-Bold";
+    src: url(../../../assets/fonts/Amiri/Amiri-Bold.ttf);
+}
+
+@font-face {
+    font-family: "Amiri-BoldItalic";
+    src: url(../../../assets/fonts/Amiri/Amiri-BoldItalic.ttf);
+}
+
+@font-face {
+    font-family: "PalanquinDark-Regular";
+    src: url(../../../assets/fonts/PlanquinDark/PalanquinDark-Regular.ttf);
+}
+
+@font-face {
+    font-family: "PalanquinDark-Medium";
+    src: url(../../../assets/fonts/PlanquinDark/PalanquinDark-Medium.ttf);
+}
+
+@font-face {
+    font-family: "PalanquinDark-SemiBold";
+    src: url(../../../assets/fonts/PlanquinDark/PalanquinDark-SemiBold.ttf);
+}
+
+@font-face {
+    font-family: "PalanquinDark-Bold";
+    src: url(../../../assets/fonts/PlanquinDark/PalanquinDark-Bold.ttf);
+}
+
+.clear{
+    clear: both;
+}
+
+.w33{
+    width: 33.3%;
+}
+
+.w50{
+    width: 49%;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+a{
+    text-decoration: none;
+}
+
+:root{
+    --main-color: #84329b;
+    --text-color: #201d21;
+    --text-color-desc: #716a74;
+    --sec-text-color: white;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.content{
+    margin-top: 240px;
+}

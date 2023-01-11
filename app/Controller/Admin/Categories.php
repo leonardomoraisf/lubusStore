@@ -5,13 +5,18 @@ namespace App\Controller\Admin;
 use App\Http\Request;
 use App\Utils\View;
 use App\Model\Entity\Category as EntityCategory;
-use App\Model\Entity\AdminUser;
 use \WilliamCosta\DatabaseManager\Pagination;
+use App\Model\Entity\AdminUser;
 use App\Utils\Utilities;
 
 class Categories extends Page
 {
 
+    /**
+     * Method to return status view
+     * @param Request $request
+     * @return string
+     */
     public static function getStatus($request)
     {
         //QUERY PARAMS
@@ -87,6 +92,7 @@ class Categories extends Page
             'active_categories' => 'active',
             'user_name' => $obUser->name,
             'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
+            'user_position' => $obUser->catchPosition($obUser->position),
             'status' => self::getStatus($request),
         ]);
     }
@@ -97,7 +103,6 @@ class Categories extends Page
      */
     public static function getFormCategory($request, $errorMessage = null, $successMessage = null)
     {
-
         $statusError = !is_null($errorMessage) ? Alert::getError($errorMessage) : '';
         $statusSuccess = !is_null($successMessage) ? Alert::getSuccess($successMessage) : '';
 
@@ -118,6 +123,7 @@ class Categories extends Page
             'statusSuccess' => $statusSuccess,
             'user_name' => $obUser->name,
             'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
+            'user_position' => $obUser->catchPosition($obUser->position),
         ]);
     }
 
@@ -203,6 +209,7 @@ class Categories extends Page
                 'statusSuccess' => $statusSuccess,
                 'user_name' => $obUser->name,
                 'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
+                'user_position' => $obUser->catchPosition($obUser->position),
             ]);
         }
     }
@@ -252,7 +259,6 @@ class Categories extends Page
 
             // REDIRECT
             return self::getEditCategory($request, $cat_id, null, "Category updated successfully!");
-            
         } else {
 
 
@@ -295,7 +301,6 @@ class Categories extends Page
 
             // REDIRECT
             return self::getEditCategory($request, $cat_id, null, "Category updated successfully!");
-
         }
     }
 
@@ -329,6 +334,7 @@ class Categories extends Page
                 'active_categories' => 'active',
                 'user_name' => $obUser->name,
                 'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
+                'user_position' => $obUser->catchPosition($obUser->position),
             ]);
         }
     }

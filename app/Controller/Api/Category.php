@@ -11,7 +11,7 @@ class Category extends Api
 {
 
     /**
-     * Method to catch items render
+     * Method to catch categories
      * @param Request $request
      * @param Pagination $obPagination
      * @return string
@@ -69,16 +69,16 @@ class Category extends Api
     public static function getCategory($request, $id)
     {
         // VERIFY CATEGORY ID
-        if(!is_numeric($id)){
-            throw new Exception("The id '".$id."' is not valid.", 400);
+        if (!is_numeric($id)) {
+            throw new Exception("The id '" . $id . "' is not valid.", 400);
         }
 
         // SEARCH CATEGORY
         $obCategory = EntityCategory::getCategoryById($id);
-    
+
         // VERIFY IS EXISTS
-        if(!$obCategory instanceof EntityCategory){
-            throw new Exception("Category ".$id." not found.", 404);
+        if (!$obCategory instanceof EntityCategory) {
+            throw new Exception("Category " . $id . " not found.", 404);
         }
 
         // RETURN CATEGORY DETAILS
@@ -88,6 +88,141 @@ class Category extends Api
             'description' => $obCategory->description,
             'date' => $obCategory->date,
             'img' => $obCategory->img,
+        ];
+    }
+
+    /**
+     * Method to register new category
+     * @param Request $request
+     */
+    public static function setNewCategory($request)
+    {
+
+        $obUtilities = new Utilities;
+
+        // POST VARS
+        $postVars = $request->getPostVars();
+        $postFiles = $request->getPostFiles();
+
+        // VALIDATIONS
+        if (!isset($postVars['name']) or !isset($postVars['description'])) {
+            throw new Exception("Fields 'name' and 'description' is mandatory!", 400);
+        }
+        if ($postVars['name'] == '' or $postVars['description'] == '') {
+            throw new Exception("Fields 'name' and 'description' is mandatory!", 400);
+        }
+        if (strlen($postVars['description']) > 280) {
+            throw new Exception("Maximum 280 characters in the 'description' field!", 400);
+        }
+        if (empty($postFiles['image']['tmp_name'])) {
+            throw new Exception("The categorie needs an image! Field name = 'image'", 400);
+        }
+
+        // SEARCH Category by name
+        $dbCategory = EntityCategory::getCategoryByName($postVars['name']);
+        if ($dbCategory instanceof EntityCategory) {
+            throw new Exception("A categorie with that name already exists!", 400);
+        }
+
+        // IMAGE VALIDATION
+        if ($obUtilities->validateImage($postFiles['image'])) {
+            $upload = $obUtilities->uploadFile($postFiles['image'], 'categories/');
+        } else {
+            throw new Exception("Sorry, the image size or type is not permited!", 400);
+        }
+
+        // NEW CATEGORIE INSTANCE
+        $obCategory = new EntityCategory;
+
+        $obCategory->register($upload, $postVars['name'], $postVars['description']);
+
+        // RETURN DETAILS OF REGISTERED CATEGORY
+        return [
+            'id' => (int)$obCategory->id,
+            'name' => $obCategory->name,
+            'description' => $obCategory->description,
+            'date' => $obCategory->date,
+            'img' => $obCategory->img,
+        ];
+    }
+
+    /**
+     * Method to update a category
+     * @param Request $request
+     * @param integer $id
+     */
+    public static function setEditCategory($request, $id)
+    {
+
+        $obCategory = EntityCategory::getCategoryById($id);
+        if (!$obCategory instanceof EntityCategory) {
+            throw new Exception("Category " . $id . " not found.", 404);
+        }
+
+        // POST VARS
+        $postVars = $request->getPostVars();
+
+        if (!isset($postVars['name']) || !isset($postVars['description'])) {
+            throw new Exception("Fields 'name' and 'description' is mandatory!", 400);
+        }
+        if ($postVars['name'] == '' or $postVars['description'] == '') {
+            throw new Exception("Fields 'name' and 'description' is mandatory!", 400);
+        }
+        if (strlen($postVars['description']) > 280) {
+            throw new Exception("Maximum 280 characters in the 'description' field!", 400);
+        }
+
+        if ($postVars['name'] != $obCategory->name) {
+
+            // SEARCH Category by name
+            $dbCategory = EntityCategory::getCategoryByName($postVars['name']);
+            if ($dbCategory instanceof EntityCategory) {
+                throw new Exception("A categorie with that name already exists!", 400);
+            }
+
+            $obCategory->updateWithoutImg($postVars['name'], $postVars['description']);
+
+            // RETURN DETAILS OF EDITED CATEGORY
+            return [
+                'id' => (int)$obCategory->id,
+                'name' => $obCategory->name,
+                'description' => $obCategory->description,
+                'date' => $obCategory->date,
+                'img' => $obCategory->img,
+            ];
+        }
+
+        $obCategory->updateWithoutImg($postVars['name'], $postVars['description']);
+
+        // RETURN DETAILS OF EDITED CATEGORY
+        return [
+            'id' => (int)$obCategory->id,
+            'name' => $obCategory->name,
+            'description' => $obCategory->description,
+            'date' => $obCategory->date,
+            'img' => $obCategory->img,
+        ];
+    }
+
+    /**
+     * Method to return post delete and delete category
+     * @param Request $request
+     * @param integer $id
+     */
+    public static function setDeleteCategory($request, $id)
+    {
+        // CATCH CATEGORY
+        $obCategory = EntityCategory::getCategoryById($id);
+        if (!$obCategory instanceof EntityCategory) {
+            throw new Exception("Category " . $id . " not found.", 404);
+        }
+
+        // DELETE CATEGORY
+        $obCategory->delete();
+
+        // RETURN DELETE SUCCESS
+        return [
+            'success' => true,
         ];
     }
 }
