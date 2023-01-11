@@ -44,6 +44,7 @@ MiddlewareQueue::setMap([
         'admin-user-basic-auth' => \App\Http\Middleware\AdminUserBasicAuth::class,
         'verify-admin-session' =>\App\Http\Middleware\VerifyAdminSession::class,
         'jwt-auth' =>\App\Http\Middleware\JWTAuth::class,
+        'cache' =>\App\Http\Middleware\Cache::class,
 ]);
 
 // DEFINE THE DEFAULT MIDDLEWARE MAP

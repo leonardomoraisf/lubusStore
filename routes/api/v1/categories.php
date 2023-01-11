@@ -7,6 +7,8 @@ use \App\Controller\Api;
 $router->get('/api/v1/categories',[
     'middlewares' => [
         'api',
+        'admin-user-basic-auth',
+        'cache',
     ],
     function($request){
         return new Response(200,Api\Category::getCategories($request),'application/json');
@@ -17,6 +19,8 @@ $router->get('/api/v1/categories',[
 $router->get('/api/v1/categories/{id}',[
     'middlewares' => [
         'api',
+        'admin-user-basic-auth',
+        'cache',
     ],
     function($request,$id){
         return new Response(200,Api\Category::getCategory($request,$id),'application/json');
@@ -27,7 +31,7 @@ $router->get('/api/v1/categories/{id}',[
 $router->post('/api/v1/categories',[
     'middlewares' => [
         'api',
-        'admin-user-basic-auth',
+        'jwt-auth',
     ],
     function($request){
         return new Response(201,Api\Category::setNewCategory($request),'application/json');
@@ -38,7 +42,7 @@ $router->post('/api/v1/categories',[
 $router->put('/api/v1/categories/{id}',[
     'middlewares' => [
         'api',
-        'admin-user-basic-auth',
+        'jwt-auth',
     ],
     function($request,$id){
         return new Response(200,Api\Category::setEditCategory($request,$id),'application/json');
@@ -49,7 +53,7 @@ $router->put('/api/v1/categories/{id}',[
 $router->delete('/api/v1/categories/{id}',[
     'middlewares' => [
         'api',
-        'admin-user-basic-auth',
+        'jwt-auth',
     ],
     function($request,$id){
         return new Response(200,Api\Category::setDeleteCategory($request,$id),'application/json');

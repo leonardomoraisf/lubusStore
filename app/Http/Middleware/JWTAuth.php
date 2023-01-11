@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use \App\Model\Entity\AdminUser;
+use \App\Model\Entity\AdminUser as EntityUser;
 use \Firebase\JWT\JWT;
 use \Firebase\JWT\Key as Key;
 use Exception;
@@ -36,10 +36,10 @@ class JWTAuth
         $user = $decoded['user'] ?? '';
 
         // CATCH ADMIN USER BY USER
-        $obUser = AdminUser::getAdminUserByUser($user);
+        $obUser = EntityUser::getAdminUserByUser($user);
 
         // RETURN USER
-        return $obUser instanceof AdminUser ? $obUser : false;
+        return $obUser instanceof EntityUser ? $obUser : false;
     }
 
     /**

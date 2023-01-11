@@ -98,6 +98,9 @@ class Router
             $params['variables'] = $matches[1];
         }
 
+        // REMOVE BAR 
+        $route = rtrim($route,'/');
+
         // VALIDATE URL PATTERN
         $patternRoute = '/^'.str_replace('/','\/',$route).'$/';
         
@@ -147,7 +150,7 @@ class Router
      * Method to return the uri without prefix
      * @return string
      */
-    private function getUri(){
+    public function getUri(){
         // Request URI
         $uri = $this->request->getUri();
         

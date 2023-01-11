@@ -8,20 +8,10 @@ $router->get('/api/v1/admin/users',[
     'middlewares' => [
         'api',
         'jwt-auth',
+        'cache',
     ],
     function($request){
         return new Response(200,Api\Account::getUsers($request),'application/json');
-    }
-]);
-
-// API INDIVIDUAL ACTUAL USER CONSULT ROUTE
-$router->get('/api/v1/admin/users/me',[
-    'middlewares' => [
-        'api',
-        'jwt-auth',
-    ],
-    function($request){
-        return new Response(200,Api\Account::getCurrentUser($request),'application/json');
     }
 ]);
 
@@ -30,6 +20,7 @@ $router->get('/api/v1/admin/users/{id}',[
     'middlewares' => [
         'api',
         'jwt-auth',
+        'cache',
     ],
     function($request,$id){
         return new Response(200,Api\Account::getUser($request,$id),'application/json');
@@ -66,5 +57,16 @@ $router->delete('/api/v1/admin/users/{id}',[
     ],
     function($request,$id){
         return new Response(200,Api\Account::setDeleteAccount($request,$id),'application/json');
+    }
+]);
+
+// API INDIVIDUAL ACTUAL USER CONSULT ROUTE
+$router->get('/api/v1/admin/user/me',[
+    'middlewares' => [
+        'api',
+        'jwt-auth',
+    ],
+    function($request){
+        return new Response(200,Api\Account::getCurrentUser($request),'application/json');
     }
 ]);

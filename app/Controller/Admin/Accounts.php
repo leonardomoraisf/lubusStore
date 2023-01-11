@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Http\Request;
-use App\Model\Entity\AdminUser;
+use App\Model\Entity\AdminUser as EntityUser;
 use App\Utils\View;
 use App\Utils\Utilities;
 use App\Utils\Bcrypt;
@@ -18,12 +18,12 @@ class Accounts extends Page
      */
     private static function getPositionsItems($request)
     {
-        $obAdminUser = new AdminUser;
-        // Categories
+
+        // Positions
         $itens = '';
 
         // RESULTS
-        $results = $obAdminUser->getPositions();
+        $results = EntityUser::getPositions();
 
         foreach ($results as $key => $value) {
             $itens .= View::render('views/admin/includes/account/item', [
@@ -45,7 +45,6 @@ class Accounts extends Page
         $statusError = !is_null($errorMessage) ? Alert::getError($errorMessage) : '';
         $statusSuccess = !is_null($successMessage) ? Alert::getSuccess($successMessage) : '';
 
-        parent::getObUser($obUser);
         $elements = parent::getElements();
         return View::render('views/admin/forms_account', [
             'preloader' => $elements['preloader'],
@@ -61,9 +60,9 @@ class Accounts extends Page
             'statusError' => $statusError,
             'statusSuccess' => $statusSuccess,
             'positions' => self::getPositionsItems($request),
-            'user_name' => $obUser->name,
-            'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
-            'user_position' => $obUser->catchPosition($obUser->position),
+            'user_name' => $_SESSION['admin']['user']['name'],
+            'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
+            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
         ]);
     }
 
@@ -106,14 +105,14 @@ class Accounts extends Page
         }
 
         // SEARCH ADMIN USER BY USER
-        $dbAdminUser = AdminUser::getAdminUserByUser($user);
-        if ($dbAdminUser instanceof AdminUser) {
+        $dbAdminUser = EntityUser::getAdminUserByUser($user);
+        if ($dbAdminUser instanceof EntityUser) {
             return self::getFormAccount($request, "An account with that username already exists!");
         }
 
         // SEARCH ADMIN USER BY EMAIL
-        $dbAdminUser = AdminUser::getAdminUserByEmail($email);
-        if ($dbAdminUser instanceof AdminUser) {
+        $dbAdminUser = EntityUser::getAdminUserByEmail($email);
+        if ($dbAdminUser instanceof EntityUser) {
             return self::getFormAccount($request, "An account with that email already exists!");
         }
 
@@ -129,7 +128,7 @@ class Accounts extends Page
         }
 
         // NEW CATEGORIE INSTANCE
-        $obAdminUser = new AdminUser;
+        $obAdminUser = new EntityUser;
 
         $obAdminUser->name = $name;
         $obAdminUser->user = $user;

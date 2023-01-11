@@ -48,7 +48,7 @@ class AdminUser
      * Positions of Admins
      * @var array
      */
-    public $positions = [
+    public static $positions = [
         '1' => 'Manager',
         '2' => 'Administrator',
         '3' => 'CEO'
@@ -90,14 +90,14 @@ class AdminUser
         return (new Database('`tb_admin.users`'))->select('id = "' . $id . '"')->fetchObject(self::class);
     }
 
-    public function getPositions()
+    public static function getPositions()
     {
-        return $this->positions;
+        return self::$positions;
     }
 
-    public function catchPosition($position)
+    public static function catchPosition($position)
     {
-        return $this->positions[$position];
+        return self::$positions[$position];
     }
 
     /**

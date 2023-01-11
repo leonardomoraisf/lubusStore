@@ -56,7 +56,7 @@ class Utilities{
         $fileName = $file['name'];
         $fileTmpName = $file['tmp_name'];
         $targetPcDir = 'D:\xampp\htdocs';
-        $targetDir = $targetPcDir.'\lubusStore-uploads/'.$dir;
+        $targetDir = $targetPcDir.'\lubusStore-files/'.$dir;
         $fileExt = explode('.',$fileName);
         $fileExt = $fileExt[count($fileExt) - 1];
         $uniqName = uniqid().'.'.$fileExt;
@@ -74,7 +74,7 @@ class Utilities{
      */
     public static function deleteFile($file,$dir){
         $targetPcDir = 'D:\xampp\htdocs';
-        $targetDir = $targetPcDir.'\lubusStore-uploads/'.$dir;
+        $targetDir = $targetPcDir.'\lubusStore-files/'.$dir;
         @unlink($targetDir.$file);
     }
 

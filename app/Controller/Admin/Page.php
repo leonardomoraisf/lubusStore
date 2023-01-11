@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Utils\View;
-use App\Model\Entity\AdminUser;
+use App\Model\Entity\AdminUser as EntityUser;
 
 class Page
 {
@@ -122,12 +122,6 @@ class Page
         return View::render('views/admin/includes/pagination/box', [
             'pages' => $links,
         ]);
-    }
-
-    public static function getObUser(&$obUser){
-
-        $obUser = AdminUser::getAdminUserById($_SESSION['admin']['user']['id']);
-
     }
     
 }

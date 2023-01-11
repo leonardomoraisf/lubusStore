@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Utils\View;
 use App\Utils\Utilities;
+use App\Model\Entity\AdminUser as EntityUser;
 
 class Home extends Page
 {
@@ -20,7 +21,6 @@ class Home extends Page
         $unique_visitors_today = Utilities::getList('`tb_users.visits`','date = '.strtotime(date('Y-m-d')), null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
         $unique_visitors = Utilities::getList('`tb_users.visits`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
         $users_regs = Utilities::getList('`tb_users`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
-        parent::getObUser($obUser);
         $elements = parent::getElements();
         return View::render('views/admin/home', [
             'preloader' => $elements['preloader'],
@@ -30,9 +30,9 @@ class Home extends Page
             'footer' => $elements['footer'],
             'scriptlinks' => $elements['scriptlinks'],
             'title' => 'Dashboard',
-            'user_name' => $obUser->name,
-            'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
-            'user_position' => $obUser->catchPosition($obUser->position),
+            'user_name' => $_SESSION['admin']['user']['name'],
+            'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
+            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
             'box_new_orders' => $box_new_orders,
             'box_today_unique_visitors' => $box_today_unique_visitors,
             'box_unique_visitors' => $box_unique_visitors,

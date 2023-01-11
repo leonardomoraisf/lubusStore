@@ -6,7 +6,7 @@ use App\Http\Request;
 use App\Utils\View;
 use App\Model\Entity\Category as EntityCategory;
 use \WilliamCosta\DatabaseManager\Pagination;
-use App\Model\Entity\AdminUser;
+use App\Model\Entity\AdminUser as EntityUser;
 use App\Utils\Utilities;
 
 class Categories extends Page
@@ -77,7 +77,6 @@ class Categories extends Page
      */
     public static function getCategories($request)
     {
-        parent::getObUser($obUser);
         $elements = parent::getElements();
         return View::render('views/admin/categories', [
             'preloader' => $elements['preloader'],
@@ -90,9 +89,9 @@ class Categories extends Page
             'itens' => self::getCategoryItems($request, $obPagination),
             'pagination' => parent::getPagination($request, $obPagination),
             'active_categories' => 'active',
-            'user_name' => $obUser->name,
-            'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
-            'user_position' => $obUser->catchPosition($obUser->position),
+            'user_name' => $_SESSION['admin']['user']['name'],
+            'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
+            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
             'status' => self::getStatus($request),
         ]);
     }
@@ -106,7 +105,6 @@ class Categories extends Page
         $statusError = !is_null($errorMessage) ? Alert::getError($errorMessage) : '';
         $statusSuccess = !is_null($successMessage) ? Alert::getSuccess($successMessage) : '';
 
-        parent::getObUser($obUser);
         $elements = parent::getElements();
         return View::render('views/admin/forms_categorie', [
             'preloader' => $elements['preloader'],
@@ -121,9 +119,9 @@ class Categories extends Page
             'active_forms_category' => 'active',
             'statusError' => $statusError,
             'statusSuccess' => $statusSuccess,
-            'user_name' => $obUser->name,
-            'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
-            'user_position' => $obUser->catchPosition($obUser->position),
+            'user_name' => $_SESSION['admin']['user']['name'],
+            'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
+            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
         ]);
     }
 
@@ -191,7 +189,6 @@ class Categories extends Page
             // REDIRECT TO CATEGORIES PAGE
             $request->getRouter()->redirect('/dashboard/categories');
         } else {
-            parent::getObUser($obUser);
             $elements = parent::getElements();
             return View::render('views/admin/edit_category', [
                 'preloader' => $elements['preloader'],
@@ -207,9 +204,9 @@ class Categories extends Page
                 'active_categories' => 'active',
                 'statusError' => $statusError,
                 'statusSuccess' => $statusSuccess,
-                'user_name' => $obUser->name,
-                'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
-                'user_position' => $obUser->catchPosition($obUser->position),
+                'user_name' => $_SESSION['admin']['user']['name'],
+                'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
+                'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
             ]);
         }
     }
@@ -319,7 +316,6 @@ class Categories extends Page
             // REDIRECT TO CATEGORIES PAGE
             $request->getRouter()->redirect('/dashboard/categories');
         } else {
-            parent::getObUser($obUser);
             $elements = parent::getElements();
             return View::render('views/admin/delete_category', [
                 'preloader' => $elements['preloader'],
@@ -332,9 +328,9 @@ class Categories extends Page
                 'cat_name' => $obCategory->name,
                 'cat_img' => UPLOADS . '/categories/' . $obCategory->img,
                 'active_categories' => 'active',
-                'user_name' => $obUser->name,
-                'user_img' => UPLOADS . '/admin_users/' . $obUser->img,
-                'user_position' => $obUser->catchPosition($obUser->position),
+                'user_name' => $_SESSION['admin']['user']['name'],
+                'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
+                'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
             ]);
         }
     }
