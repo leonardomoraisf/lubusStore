@@ -4,6 +4,8 @@ namespace App\Controller\Admin;
 
 use App\Utils\View;
 use App\Utils\Utilities;
+use App\Utils\Users\User as UtilsUser;
+use WilliamCosta\DatabaseManager\Database;
 use App\Model\Entity\AdminUser as EntityUser;
 
 class Home extends Page
@@ -18,9 +20,9 @@ class Home extends Page
         $box_today_unique_visitors = View::render('views/admin/includes/home/box_today-unique-visitors');
         $box_unique_visitors = View::render('views/admin/includes/home/box_unique-visitors');
         $box_user_regs = View::render('views/admin/includes/home/box_user-registrations');
-        $unique_visitors_today = Utilities::getList('`tb_users.visits`','date = '.strtotime(date('Y-m-d')), null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
-        $unique_visitors = Utilities::getList('`tb_users.visits`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
-        $users_regs = Utilities::getList('`tb_users`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $unique_visitors_today = UtilsUser::countTodayVisits();
+        $unique_visitors = (new Database('`tb_users.visits`'))->select(null,null,null,'COUNT(*) as qtd')->fetchObject()->qtd;
+        $users_regs = (new Database('`tb_users`'))->select(null,null,null,'COUNT(*) as qtd')->fetchObject()->qtd;
         $elements = parent::getElements();
         return View::render('views/admin/home', [
             'preloader' => $elements['preloader'],

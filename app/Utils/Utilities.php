@@ -3,6 +3,7 @@
 namespace App\Utils;
 
 use WilliamCosta\DatabaseManager\Database;
+use App\Utils\MySql;
 
 class Utilities{
 
@@ -55,8 +56,7 @@ class Utilities{
     public static function uploadFile($file,$dir){
         $fileName = $file['name'];
         $fileTmpName = $file['tmp_name'];
-        $targetPcDir = 'D:\xampp\htdocs';
-        $targetDir = $targetPcDir.'\lubusStore-files/'.$dir;
+        $targetDir = $_ENV['UPLOADS_DIR'].$dir;
         $fileExt = explode('.',$fileName);
         $fileExt = $fileExt[count($fileExt) - 1];
         $uniqName = uniqid().'.'.$fileExt;
@@ -73,8 +73,7 @@ class Utilities{
      * @param string $dir
      */
     public static function deleteFile($file,$dir){
-        $targetPcDir = 'D:\xampp\htdocs';
-        $targetDir = $targetPcDir.'\lubusStore-files/'.$dir;
+        $targetDir = $_ENV['UPLOADS_DIR'].$dir;
         @unlink($targetDir.$file);
     }
 

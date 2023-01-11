@@ -4,3 +4,23 @@ RewriteCond %{SCRIPT_FILENAME} !-d
 RewriteRule ^(.*) index.php?url=$1 [QSA,L]
 
 Options -Indexes
+
+<FilesMatch "\.env$>
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.env.example$>
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.gitignore$>
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\composer.json$>
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\composer.lock$>
+    Deny from all
+</FilesMatch>

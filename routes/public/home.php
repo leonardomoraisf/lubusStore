@@ -6,6 +6,7 @@ use \App\Controller\Public;
 // GET
 $router->get('/',[
     'middlewares' => [
+        'verify-user-visit',
         'cache',
     ],
     function($request){
