@@ -80,17 +80,17 @@ $ composer dump-autoload
 
 ### Connecting the Website with the Server
 
-1 - Drop the project into the 'htdocs' folder of your XAMPP installation.
+- Drop the project into the 'htdocs' folder of your XAMPP installation.
 
-2 - Configure .env file:
-    1 - URL=http://localhost/lubusStore
-    2 - UPLOADS=http://localhost/"uploads folder you want, into 'htdocs folder'"
-    3 - UPLOADS_DIR=C:\xampp\htdocs\"uploads folder you want, into 'htdocs folder'"/
-    4 - Database drive, host, name, pass, user, and if needs, port
+- Configure .env file
+    - URL=http://localhost/lubusStore
+    - UPLOADS=http://localhost/"uploads folder you want, into 'htdocs folder'"
+    - UPLOADS_DIR=C:\xampp\htdocs\"uploads folder you want, into 'htdocs folder'"/
+    - Database drive, host, name, pass, user, and if needs, port
 
-3 - Start your APACHE server and MySql database of XAMPP.
+- Start your APACHE server and MySql database of XAMPP.
 
-4 - With the server up and running, go to the navigator and write http://localhost/lubusStore
+- With the server up and running, go to the navigator and write http://localhost/lubusStore
 
 ### Running
 
