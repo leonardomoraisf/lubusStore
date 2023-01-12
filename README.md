@@ -1,6 +1,6 @@
 # LubusStore
 
-If you want to take a look on all screens of the App, they are [here](https://drive.google.com/drive/folders/18JK3H-Cjps3JkpFoFsZK20aCZRxln5ab?usp=share_link).
+If you want to take a look on all screens of the Website, they are [here](https://drive.google.com/drive/folders/18JK3H-Cjps3JkpFoFsZK20aCZRxln5ab?usp=share_link).
 
 ## About this Project
 
