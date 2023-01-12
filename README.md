@@ -52,7 +52,7 @@ If you want to test the Site in Production mode, what you need is listed below:
 
 ### Prerequisites
 
-To run this project in the development mode, you'll need to have a basic environment to run a PHP website, that can be found [here](https://www.apachefriends.org/pt_br/index.html).
+To run this project in the development mode, you'll need to have a basic environment to run a PHP website, that can be found [here](https://www.apachefriends.org/pt_br/index.html). And you need composer installed, that can be found [here](https://getcomposer.org/).
 
 Also, you'll need to the server running locally on your machine with the mock data.
 
