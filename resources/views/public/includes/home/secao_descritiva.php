@@ -12,7 +12,7 @@
                 </div>
                 <div class="buttons">
                     <a class="btn btn-primary btn-lg" href="{{URL}}/catalogo" role="button">Ver produtos</a>
-                    <a class="btn btn-outline-primary btn-lg" href="{{URL}}/produtos/promocoes" role="button">Promoções</a>
+                    <a class="btn btn-outline-primary btn-lg" href="{{URL}}/catalogo/promocoes" role="button">Promoções</a>
                 </div>
             </div>
             <div class="col-lg-7 d-none d-xl-block d-lg-block d-md-block">

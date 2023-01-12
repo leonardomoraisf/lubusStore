@@ -281,7 +281,9 @@ class Products extends Page
         $name = $postVars['name'];
         $description = $postVars['description'];
         $price = $postVars['price'];
+        $price = number_format($price, 2, '.', ' ');
         $discount_price = $postVars['discount_price'];
+        $discount_price = number_format($discount_price, 2, '.', ' ');
         $cat_id = $postVars['cat_id'];
         $img = $postFiles['file'];
 
@@ -299,8 +301,8 @@ class Products extends Page
 
             $obProduct->name = $name;
             $obProduct->description = $description;
-            $obProduct->price = $price;
-            $obProduct->discount_price = $discount_price;
+            $obProduct->price = (double)$price;
+            $obProduct->discount_price = (double)$discount_price;
             $obProduct->cat_id = $cat_id;
 
             $obProduct->updateWithoutImage();
@@ -329,8 +331,8 @@ class Products extends Page
 
             $obProduct->name = $name;
             $obProduct->description = $description;
-            $obProduct->price = $price;
-            $obProduct->discount_price = $discount_price;
+            $obProduct->price = (double)$price;
+            $obProduct->discount_price = (double)$discount_price;
             $obProduct->cat_id = $cat_id;
 
             $obProduct->updateWithImage($obProduct->img,$new_image);
