@@ -57,7 +57,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="" class="nav-link {{active_forms_product}}">
+              <a href="{{URL}}/dashboard/forms/product" class="nav-link {{active_forms_product}}">
                 <i class="far fa-circle nav-icon"></i>
                 <p>New Product</p>
               </a>
@@ -70,7 +70,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="" class="nav-link {{active_products}}">
+          <a href="{{URL}}/dashboard/products" class="nav-link {{active_products}}">
             <i class="nav-icon fa fa-cart-shopping"></i>
             <p>Products</p>
           </a>

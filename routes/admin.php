@@ -12,6 +12,9 @@ include __DIR__.'/admin/categories.php';
 // Account form page include ROUTES
 include __DIR__.'/admin/accounts.php';
 
+// Products page include ROUTES
+include __DIR__.'/admin/products.php';
+
 
 
 

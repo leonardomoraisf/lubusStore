@@ -4,7 +4,6 @@ namespace App\Model\Entity;
 
 use App\Utils\Utilities;
 use WilliamCosta\DatabaseManager\Database;
-use App\Controller\Admin\Categories;
 
 class Category
 {
@@ -57,6 +56,14 @@ class Category
     public static function getCategoryById($id)
     {
         return (new Database('`tb_categories`'))->select('id = "' . $id . '"')->fetchObject(self::class);
+    }
+
+    /**
+     * Method to return all categories as object
+     * @return Category multiple
+     */
+    public static function getAllCategories(){
+        return (new Database('`tb_categories`'))->select()->fetchObject(self::class);
     }
 
     /**

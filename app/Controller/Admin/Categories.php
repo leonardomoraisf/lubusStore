@@ -6,6 +6,7 @@ use App\Http\Request;
 use App\Utils\View;
 use App\Model\Entity\Category as EntityCategory;
 use \WilliamCosta\DatabaseManager\Pagination;
+use \WilliamCosta\DatabaseManager\Database;
 use App\Model\Entity\AdminUser as EntityUser;
 use App\Utils\Utilities;
 
@@ -45,7 +46,7 @@ class Categories extends Page
         $itens = '';
 
         // TOTAL REG QUANTITY
-        $totalQuantity = Utilities::getList('`tb_categories`', null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
+        $totalQuantity = (new Database('`tb_categories`'))->select(null, null, null, 'COUNT(*) as qtd')->fetchObject()->qtd;
 
         // ACTUAL PAGE
         $queryParams = $request->getQueryParams();
@@ -55,10 +56,10 @@ class Categories extends Page
         $obPagination = new Pagination($totalQuantity, $actualPage, 5);
 
         // RESULTS
-        $results = Utilities::getList('`tb_categories`', null, 'id DESC', $obPagination->getLimit());
+        $results = (new Database('`tb_categories`'))->select(null, 'id DESC', $obPagination->getLimit());
 
         // RENDER ITEM
-        while ($obCategories = $results->fetchObject(EntityCategory::class))
+        while ($obCategories = $results->fetchObject(EntityCategory::class)) {
             $itens .= View::render('views/admin/includes/categories/item', [
                 'cat_id' => $obCategories->id,
                 'cat_name' => $obCategories->name,
@@ -66,6 +67,7 @@ class Categories extends Page
                 'cat_date' => date('d/m/Y', strtotime($obCategories->date)),
                 'cat_img' => UPLOADS . '/categories/' . $obCategories->img,
             ]);
+        }
 
         return $itens;
     }
