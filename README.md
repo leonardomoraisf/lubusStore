@@ -108,7 +108,7 @@ Thank you!
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/leonardomoraisf/lubusStore/blob/master/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/leonardomoraisf/lubusStore/blob/main/LICENSE) file for details
 
 
 
