@@ -6,15 +6,15 @@
             <div class="row contatos justify-content-evenly align-items-center d-grid d-xl-flex d-lg-grid">
                 <div class="contact email">
                     <i class="fa fa-envelope"></i>
-                    <span>contato@lojalubus.com.br</span>
+                    <span>contato@contato.com.br</span>
                 </div>
                 <div class="contact phone">
                     <i class="fa fa-phone"></i>
-                    <span>+55 31 9 7151-6241</span>
+                    <span>+55 99 9 9999-9999</span>
                 </div>
                 <div class="contact location">
                     <i class="fa fa-map-marker"></i>
-                    <span>Belo Horizonte, MG</span>
+                    <span>City, State</span>
                 </div>
             </div>
             <div class="row divider"></div>
