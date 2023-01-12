@@ -132,6 +132,25 @@ class Product
         ]);
     }
 
+        /**
+     * Method to update the product with its image
+     * @param string $actual_image
+     * @param string $new_image
+     * @return Product
+     */
+    public function update(){
+        // UPDATE PRODUCT
+        return (new Database('`tb_products`'))->update('id = ' . $this->id, [
+            'name' => $this->name,
+            'description' => $this->description,
+            'price' => $this->price,
+            'discount_price' => $this->discount_price,
+            'cat_id' => $this->cat_id,
+            'date' => $this->date,
+            'img' => $this->img,
+        ]);
+    }
+
     /**
      * Method to delete the product in the db and delete its image
      * @return boolean

@@ -115,20 +115,20 @@ class Category extends Api
             throw new Exception("Maximum 280 characters in the 'description' field!", 400);
         }
         if (empty($postFiles['image']['tmp_name'])) {
-            throw new Exception("The categorie needs an image! Field name = 'image'", 400);
+            throw new Exception("The category needs an image! Field name = 'image'", 400);
         }
 
         // SEARCH Category by name
         $dbCategory = EntityCategory::getCategoryByName($postVars['name']);
         if ($dbCategory instanceof EntityCategory) {
-            throw new Exception("A categorie with that name already exists!", 400);
+            throw new Exception("A category with that name already exists!", 400);
         }
 
         // IMAGE VALIDATION
         if ($obUtilities->validateImage($postFiles['image'])) {
             $upload = $obUtilities->uploadFile($postFiles['image'], 'categories/');
         } else {
-            throw new Exception("Sorry, the image size or type is not permited!", 400);
+            throw new Exception("Sorry, the image size or type is not permitted!", 400);
         }
 
         // NEW CATEGORIE INSTANCE
@@ -177,7 +177,7 @@ class Category extends Api
             // SEARCH Category by name
             $dbCategory = EntityCategory::getCategoryByName($postVars['name']);
             if ($dbCategory instanceof EntityCategory) {
-                throw new Exception("A categorie with that name already exists!", 400);
+                throw new Exception("A category with that name already exists!", 400);
             }
 
             $obCategory->updateWithoutImg($postVars['name'], $postVars['description']);

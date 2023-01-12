@@ -9,6 +9,9 @@ include __DIR__.'/api/v1/auth.php';
 // CATEGORIES API ROUTE
 include __DIR__.'/api/v1/categories.php';
 
+// PRODUCTS API ROUTE
+include __DIR__.'/api/v1/products.php';
+
 // ADMIN USER API ROUTE
 include __DIR__.'/api/v1/adminUsers.php';
 
