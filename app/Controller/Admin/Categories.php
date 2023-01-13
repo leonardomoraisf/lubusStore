@@ -99,7 +99,7 @@ class Categories extends Page
     }
 
     /**
-     * Method to return form categorie view
+     * Method to return form category view
      * @return string
      */
     public static function getFormCategory($request, $errorMessage = null, $successMessage = null)
@@ -218,8 +218,8 @@ class Categories extends Page
 
         $obUtilities = new Utilities;
 
-        $obCategorie = EntityCategory::getCategoryById($cat_id);
-        if (!$obCategorie instanceof EntityCategory) {
+        $obCategory = EntityCategory::getCategoryById($cat_id);
+        if (!$obCategory instanceof EntityCategory) {
             // REDIRECT TO CATEGORIES PAGE
             $request->getRouter()->redirect('/dashboard/categories');
         }
@@ -240,7 +240,7 @@ class Categories extends Page
                 return self::getEditCategory($request, $cat_id, "Maximum of 280 characters!");
             }
 
-            if ($name != $obCategorie->name) {
+            if ($name != $obCategory->name) {
 
                 // SEARCH Category by name
                 $dbCategory = EntityCategory::getCategoryByName($name);
@@ -248,13 +248,21 @@ class Categories extends Page
                     return self::getEditCategory($request, $cat_id, "A category with that name already exists!");
                 }
 
-                $obCategorie->updateWithoutImg($name, $description);
+                $obCategory->name = $name;
+                $obCategory->description = $description;
+                $obCategory->img = $obCategory->img;
+
+                $obCategory->update();
 
                 // REDIRECT
                 return self::getEditCategory($request, $cat_id, null, "Category updated successfully!");
             }
 
-            $obCategorie->updateWithoutImg($name, $description);
+            $obCategory->name = $name;
+            $obCategory->description = $description;
+            $obCategory->img = $obCategory->img;
+
+            $obCategory->update();
 
             // REDIRECT
             return self::getEditCategory($request, $cat_id, null, "Category updated successfully!");
@@ -268,7 +276,7 @@ class Categories extends Page
                 return self::getEditCategory($request, $cat_id, "Maximum of 280 characters!");
             }
 
-            if ($name != $obCategorie->name) {
+            if ($name != $obCategory->name) {
 
                 // SEARCH Category by name
                 $dbCategory = EntityCategory::getCategoryByName($name);
@@ -278,12 +286,15 @@ class Categories extends Page
 
                 // IMAGE VALIDATION
                 if ($obUtilities->validateImage($img)) {
-                    $upload = $obUtilities->uploadFile($img, 'categories/');
+                    $new_image = $obUtilities->uploadFile($img, 'categories/');
                 } else {
                     return Categories::getEditCategory($request, $cat_id, "Sorry, the image size or type is not permited!");
                 }
 
-                $obCategorie->updateWithImg($obCategorie->img, $name, $description, $upload);
+                $obCategory->name = $name;
+                $obCategory->description = $description;
+
+                $obCategory->updateWithImg($obCategory->img, $new_image);
 
                 // REDIRECT
                 return self::getEditCategory($request, $cat_id, null, "Category updated successfully!");
@@ -291,12 +302,15 @@ class Categories extends Page
 
             // IMAGE VALIDATION
             if ($obUtilities->validateImage($img)) {
-                $upload = $obUtilities->uploadFile($img, 'categories/');
+                $new_image = $obUtilities->uploadFile($img, 'categories/');
             } else {
                 return Categories::getEditCategory($request, $cat_id, "Sorry, the image size or type is not permited!");
             }
 
-            $obCategorie->updateWithImg($obCategorie->img, $name, $description, $upload);
+            $obCategory->name = $name;
+            $obCategory->description = $description;
+
+            $obCategory->updateWithImg($obCategory->img, $new_image);
 
             // REDIRECT
             return self::getEditCategory($request, $cat_id, null, "Category updated successfully!");

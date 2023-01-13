@@ -69,33 +69,28 @@ class Category
     /**
      * Method to update in db with the actual instance
      */
-    public function updateWithImg($img_name, $name, $description, $upload)
+    public function updateWithImg($actual_image, $new_image)
     {
-        Utilities::deleteFile($img_name, 'categories/');
-        // DEFINE DATA
-        $this->name = $name;
-        $this->description = $description;
+        Utilities::deleteFile($actual_image, 'categories/');
+        
         // UPDATE CATEGORY
         return (new Database('`tb_categories`'))->update('id = ' . $this->id, [
             'name' => $this->name,
             'description' => $this->description,
-            'img' => $upload,
+            'img' => $new_image,
         ]);
     }
 
     /**
      * Method to update in db with the actual instance
      */
-    public function updateWithoutImg($name, $description)
+    public function update()
     {
-        // DEFINE DATA
-        $this->name = $name;
-        $this->description = $description;
-
         // UPDATE CATEGORY
         return (new Database('`tb_categories`'))->update('id = ' . $this->id, [
             'name' => $this->name,
             'description' => $this->description,
+            'img' => $this->img,
         ]);
     }
 

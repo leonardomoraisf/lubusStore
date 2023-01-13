@@ -304,8 +304,9 @@ class Products extends Page
             $obProduct->price = (double)$price;
             $obProduct->discount_price = (double)$discount_price;
             $obProduct->cat_id = $cat_id;
+            $obProduct->img = $obProduct->img;
 
-            $obProduct->updateWithoutImage();
+            $obProduct->update();
 
             // REDIRECT
             return self::getEditProduct($request, $p_id, null, "Product updated successfully!");
