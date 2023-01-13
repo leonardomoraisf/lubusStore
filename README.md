@@ -37,7 +37,7 @@ If you want to test the Site in Production mode, what you need is listed below:
 ## Functionalities
 
 - Dashboard Users
-	- Create, Edit and Delete Dashboard Users
+	- Create Dashboard Users
     - View, Create, Edit and Delete Dashboard Users by the API of the project
 
 - Categories
