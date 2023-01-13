@@ -3,7 +3,7 @@
 use \App\Http\Response;
 use \App\Controller\Api;
 
-// API AUTHOTIZATION ROUTE
+// API AUTHORIZATION ROUTE
 $router->post('/api/v1/auth',[
     'middlewares' => [
         'api',

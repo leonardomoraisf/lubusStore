@@ -22,7 +22,7 @@ class Router
     private $prefix = '';
 
     /**
-     * Routes indice
+     * Routes indices
      * @var array
      */
     private $routes = [];

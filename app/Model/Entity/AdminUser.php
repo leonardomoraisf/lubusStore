@@ -45,6 +45,12 @@ class AdminUser
     public $position;
 
     /**
+     * User image name
+     * @var string
+     */
+    public $img;
+
+    /**
      * Positions of Admins
      * @var array
      */
@@ -53,12 +59,6 @@ class AdminUser
         '2' => 'Administrator',
         '3' => 'CEO'
     ];
-
-    /**
-     * User image name
-     * @var string
-     */
-    public $img;
 
     /**
      * Method to return an user using the username
@@ -118,7 +118,7 @@ class AdminUser
         return true;
     }
 
-    public function apiUpdate()
+    public function update()
     {
         // UPDATE USER
         return (new Database('`tb_admin.users`'))->update('id = ' . $this->id, [
@@ -127,6 +127,7 @@ class AdminUser
             'name' => $this->name,
             'email' => $this->email,
             'position' => $this->position,
+            'img' => $this->img
         ]);
     }
 

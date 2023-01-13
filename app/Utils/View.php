@@ -5,13 +5,13 @@ namespace App\Utils;
 class View{
 
     /**
-     * Padrons vars of view
+     * Default vars of view
      * @var array
      */
     private static $vars = [];
 
     /**
-     * Method to define init datas of class
+     * Method to define init data of class
      */
     public static function init($vars = []){
         self::$vars = $vars;
@@ -49,7 +49,7 @@ class View{
             return '{{'.$item.'}}';
         },$keys);
 
-        // RETURN RENDERIZED CONTENT
+        // RETURN RENDERED CONTENT
         return str_replace($keys,array_values($vars),$contentView);
 
     }

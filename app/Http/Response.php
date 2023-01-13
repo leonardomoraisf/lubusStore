@@ -31,7 +31,7 @@ class Response
     /**
      * Method to init class and define values
      * @param integer
-     * @param mixes
+     * @param mixed
      * @param string
      */
     public function __construct($httpCode, $content, $contentType = 'text/html')

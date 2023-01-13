@@ -34,7 +34,7 @@ class Request
     private $postVars = [];
 
     /**
-     * Files of $_POST
+     * Files of $_FILES
      */
     private $postFiles = [];
 

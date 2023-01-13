@@ -199,8 +199,9 @@ class Account extends Api
             $obUser->email = $postVars['email'];
             $obUser->password = Bcrypt::hash($postVars['password']);
             $obUser->position = $postVars['position'];
+            $obUser->img = $obUser->img;
 
-            $obUser->apiUpdate();
+            $obUser->update();
 
             // RETURN DETAILS OF REGISTERED USER
             return [
@@ -224,8 +225,9 @@ class Account extends Api
             $obUser->email = $postVars['email'];
             $obUser->password = Bcrypt::hash($postVars['password']);
             $obUser->position = $postVars['position'];
+            $obUser->img = $obUser->img;
 
-            $obUser->apiUpdate();
+            $obUser->update();
 
             // RETURN DETAILS OF REGISTERED USER
             return [
@@ -242,8 +244,9 @@ class Account extends Api
         $obUser->email = $postVars['email'];
         $obUser->password = Bcrypt::hash($postVars['password']);
         $obUser->position = $postVars['position'];
+        $obUser->img = $obUser->img;
 
-        $obUser->apiUpdate();
+        $obUser->update();
 
         // RETURN DETAILS OF REGISTERED USER
         return [
