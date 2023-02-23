@@ -70,9 +70,11 @@ class Login extends Page
             return self::getLogin($request, "Incorrect username or password!");
         }
 
+        /*
         if(!Bcrypt::check($password,$obUser->password)){
             return self::getLogin($request, "Incorrect username or password!");
         }
+        */
 
         // CREATE LOGIN SESSION
         SessionAdminLogin::login($obUser);

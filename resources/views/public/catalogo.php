@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
+    <link rel="stylesheet" href="{{URL}}/resources/views/public/styles/catalogo.css">
     {{links}}
 </head>
 
@@ -12,24 +13,24 @@
 
     {{header}}
 
-    <div class="content">
+    <div class="content catalogo">
 
-        {{secao_descritiva}}
+        <div class="container">
 
-        {{secao_categorias}}
+            <div class="row produtos">
 
-        {{secao_depoimentos}}
+                <!-- Produtos -->
+                {{most_liked}}
 
-        {{secao_duvidas}}
+            </div>
 
-        {{secao_newsletter}}
+        </div>
 
     </div>
 
     {{footer}}
 
     {{scriptlinks}}
-    <script src="{{URL}}/resources/assets/public/js/home.js"></script>
 
 </body>
 

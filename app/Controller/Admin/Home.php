@@ -34,7 +34,7 @@ class Home extends Page
             'title' => 'Dashboard',
             'user_name' => $_SESSION['admin']['user']['name'],
             'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
-            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
+            'user_position' => EntityUser::$positions[$_SESSION['admin']['user']['position']],
             'box_new_orders' => $box_new_orders,
             'box_today_unique_visitors' => $box_today_unique_visitors,
             'box_unique_visitors' => $box_unique_visitors,

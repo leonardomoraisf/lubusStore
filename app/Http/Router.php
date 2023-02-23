@@ -194,7 +194,7 @@ class Router
             }
         }
         // URL NOT FOUND
-        throw new Exception("URL not found", 404);
+        $this->redirect('/404');
     }
 
     /**

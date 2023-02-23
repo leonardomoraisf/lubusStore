@@ -1,0 +1,1 @@
+<div class="price"><span>R$ {{product_price}}</span>R$ {{product_discount_price}}</div>

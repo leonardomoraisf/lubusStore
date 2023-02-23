@@ -236,6 +236,7 @@ class Product extends Api
     {
          // CATCH PRODUCT
          $obProduct = EntityProduct::getProductById($id);
+         
          if (!$obProduct instanceof EntityProduct) {
              throw new Exception("Product " . $id . " not found.", 404);
          }

@@ -40,7 +40,7 @@ class AdminUser
 
     /**
      * User position
-     * @var string
+     * @var integer
      */
     public $position;
 
@@ -93,11 +93,6 @@ class AdminUser
     public static function getPositions()
     {
         return self::$positions;
-    }
-
-    public static function catchPosition($position)
-    {
-        return self::$positions[$position];
     }
 
     /**

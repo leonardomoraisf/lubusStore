@@ -62,7 +62,7 @@ class Accounts extends Page
             'positions' => self::getPositionsItems($request),
             'user_name' => $_SESSION['admin']['user']['name'],
             'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
-            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
+            'user_position' => EntityUser::$positions[$_SESSION['admin']['user']['position']],
         ]);
     }
 

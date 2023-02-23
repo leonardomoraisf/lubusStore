@@ -93,7 +93,7 @@ class Categories extends Page
             'active_categories' => 'active',
             'user_name' => $_SESSION['admin']['user']['name'],
             'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
-            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
+            'user_position' => EntityUser::$positions[$_SESSION['admin']['user']['position']],
             'status' => self::getStatus($request),
         ]);
     }
@@ -123,7 +123,7 @@ class Categories extends Page
             'statusSuccess' => $statusSuccess,
             'user_name' => $_SESSION['admin']['user']['name'],
             'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
-            'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
+            'user_position' => EntityUser::$positions[$_SESSION['admin']['user']['position']],
         ]);
     }
 
@@ -208,7 +208,7 @@ class Categories extends Page
                 'statusSuccess' => $statusSuccess,
                 'user_name' => $_SESSION['admin']['user']['name'],
                 'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
-                'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
+                'user_position' => EntityUser::$positions[$_SESSION['admin']['user']['position']],
             ]);
         }
     }
@@ -346,7 +346,7 @@ class Categories extends Page
                 'active_categories' => 'active',
                 'user_name' => $_SESSION['admin']['user']['name'],
                 'user_img' => UPLOADS . '/admin_users/' . $_SESSION['admin']['user']['img'],
-                'user_position' => EntityUser::catchPosition($_SESSION['admin']['user']['position']),
+                'user_position' => EntityUser::$positions[$_SESSION['admin']['user']['position']],
             ]);
         }
     }
